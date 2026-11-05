@@ -1,0 +1,902 @@
+{
+  "extName": {
+    "message": "Le Chat Suite · File Chats, Save Prompts, Export Markdown",
+    "description": "Extension name shown in the Chrome Web Store and chrome://extensions."
+  },
+  "extDesc": {
+    "message": "File Le Chat threads into folders, insert saved prompts in one click, and export any chat to Markdown. Local-only, no account.",
+    "description": "Short description shown in the Chrome Web Store listing."
+  },
+  "actionTitle": {
+    "message": "Le Chat Suite",
+    "description": "Tooltip for the toolbar action icon."
+  },
+  "activateBtn": {
+    "message": "Activate",
+    "description": "License activation submit button."
+  },
+  "badgeFree": {
+    "message": "Free",
+    "description": "Tier badge shown when no Pro license is active."
+  },
+  "badgePro": {
+    "message": "Pro",
+    "description": "Tier badge shown when a Pro license is active."
+  },
+  "compareBackup": {
+    "message": "Backup & restore",
+    "description": "Free-vs-Pro table row label."
+  },
+  "compareColors": {
+    "message": "Folder colors",
+    "description": "Free-vs-Pro table row label."
+  },
+  "compareEyebrow": {
+    "message": "Free vs Pro",
+    "description": "Eyebrow label above the tier comparison table."
+  },
+  "compareFeature": {
+    "message": "Feature",
+    "description": "Visually hidden header cell of the comparison table."
+  },
+  "compareFolders": {
+    "message": "Folders",
+    "description": "Free-vs-Pro table row label."
+  },
+  "compareFree": {
+    "message": "Free",
+    "description": "Free column header in the comparison table."
+  },
+  "compareIncluded": {
+    "message": "Included",
+    "description": "Screen-reader text behind a check mark in the comparison table."
+  },
+  "compareMarkdown": {
+    "message": "Markdown export",
+    "description": "Free-vs-Pro table row label."
+  },
+  "comparePdf": {
+    "message": "PDF export",
+    "description": "Free-vs-Pro table row label."
+  },
+  "comparePro": {
+    "message": "Pro",
+    "description": "Pro column header in the comparison table."
+  },
+  "comparePrompts": {
+    "message": "Saved prompts",
+    "description": "Free-vs-Pro table row label."
+  },
+  "compareUpTo200": {
+    "message": "Up to 200",
+    "description": "Pro folder allowance in the comparison table."
+  },
+  "compareUpTo500": {
+    "message": "Up to 500",
+    "description": "Pro prompt allowance in the comparison table."
+  },
+  "confirmBtn": {
+    "message": "Confirm?",
+    "description": "Armed state of a two-step destructive button."
+  },
+  "deactivateBtn": {
+    "message": "Deactivate",
+    "description": "Button that deactivates the Pro license on this device."
+  },
+  "footerGitHub": {
+    "message": "GitHub",
+    "description": "Footer link label."
+  },
+  "footerHelp": {
+    "message": "Help",
+    "description": "Footer link label."
+  },
+  "footerPrivacy": {
+    "message": "Privacy",
+    "description": "Footer link label."
+  },
+  "laterBtn": {
+    "message": "Maybe later",
+    "description": "Dismissal button on every upgrade nudge."
+  },
+  "licenseActivated": {
+    "message": "Pro activated. Every cap on this device is gone.",
+    "description": "Shown after a valid license key is activated."
+  },
+  "licenseDeactivated": {
+    "message": "Pro deactivated on this device.",
+    "description": "Shown after the license is deactivated."
+  },
+  "licenseHeading": {
+    "message": "License",
+    "description": "License section heading."
+  },
+  "licenseInvalid": {
+    "message": "That key didn't check out. Check the key and try again.",
+    "description": "Shown when a license key fails verification."
+  },
+  "licenseStorageError": {
+    "message": "The key checked out but couldn't be saved on this device. Try again.",
+    "description": "Shown when a valid key cannot be persisted."
+  },
+  "optAssignEmpty": {
+    "message": "Drag a chat onto a folder on chat.mistral.ai, or use the panel's move menu.",
+    "description": "Empty-state body for the filed-conversations list."
+  },
+  "optAssignEmptyHead": {
+    "message": "File a chat, find it fast",
+    "description": "Empty-state headline for the filed-conversations list."
+  },
+  "optAssignHeading": {
+    "message": "Filed chats",
+    "description": "Sub-heading above the assignment management list."
+  },
+  "optAssignMoveAria": {
+    "message": "Move this conversation to another folder",
+    "description": "aria-label for the assignment folder picker."
+  },
+  "optAssignPick": {
+    "message": "Choose a folder",
+    "description": "Disabled placeholder option in the assignment folder picker."
+  },
+  "optAssignRemove": {
+    "message": "Unfile",
+    "description": "Button that removes a conversation from its folder."
+  },
+  "optAssignRemoveAria": {
+    "message": "Remove this conversation from its folder",
+    "description": "aria-label for the unfile button."
+  },
+  "optAssignUntitled": {
+    "message": "Untitled chat",
+    "description": "Fallback name for a conversation with no cached title."
+  },
+  "optBackupBtn": {
+    "message": "Download backup",
+    "description": "Pro button that downloads the JSON backup."
+  },
+  "optBackupDone": {
+    "message": "Backup downloaded. Keep it somewhere safe.",
+    "description": "Shown after the backup file is saved."
+  },
+  "optBackupFail": {
+    "message": "The backup couldn't be built. Try again.",
+    "description": "Shown when backup creation fails."
+  },
+  "optBackupHeading": {
+    "message": "Backup & data",
+    "description": "Backup section heading."
+  },
+  "optBackupNudge": {
+    "message": "Backup and restore are a Pro unlock. One JSON file holds everything. $$99 once, yours forever. 14-day money-back.",
+    "description": "Nudge text when a free user reaches for backup. $$ escapes a literal dollar sign."
+  },
+  "optBackupSub": {
+    "message": "Folders, prompts, assignments and settings, all in one JSON file on this device.",
+    "description": "Backup section sub-line."
+  },
+  "optCancel": {
+    "message": "Cancel",
+    "description": "Cancel an inline edit."
+  },
+  "optColorsHintFree": {
+    "message": "Spot any project at a glance. Pro colors are set in the panel on chat.mistral.ai.",
+    "description": "Locked folder-colors row hint on the free tier."
+  },
+  "optColorsHintPro": {
+    "message": "Set each folder's color from the Le Chat Suite panel on chat.mistral.ai.",
+    "description": "Folder-colors row hint on Pro."
+  },
+  "optColorsLabel": {
+    "message": "Folder colors",
+    "description": "Folder-colors row label."
+  },
+  "optColorsNudge": {
+    "message": "Folder colors are a Pro unlock, and Pro lifts every other cap too. $$99 once, not a subscription. 14-day money-back.",
+    "description": "Nudge text when a free user clicks the locked colors row. $$ escapes a literal dollar sign."
+  },
+  "optDangerHeading": {
+    "message": "Danger zone",
+    "description": "Danger zone section heading."
+  },
+  "optEnableAria": {
+    "message": "Enable Le Chat Suite everywhere",
+    "description": "aria-label for the master enable switch."
+  },
+  "optEnableHint": {
+    "message": "Turn the whole panel on or off on chat.mistral.ai.",
+    "description": "Master enable switch hint."
+  },
+  "optEnableLabel": {
+    "message": "Enable Le Chat Suite",
+    "description": "Master enable switch label."
+  },
+  "optExportToggleAria": {
+    "message": "Show export controls on chat.mistral.ai",
+    "description": "aria-label for the export feature switch."
+  },
+  "optExportToggleHint": {
+    "message": "Save any chat as Markdown. Pro adds PDF.",
+    "description": "Export feature switch hint."
+  },
+  "optExportToggleLabel": {
+    "message": "Export",
+    "description": "Export feature switch label."
+  },
+  "optFolderAdd": {
+    "message": "Add folder",
+    "description": "Submit button of the new-folder form."
+  },
+  "optFolderAria": {
+    "message": "New folder name",
+    "description": "aria-label for the new-folder input."
+  },
+  "optFolderCap": {
+    "message": "$1 of $2 folders used. Pro lifts the cap and adds colors, PDF and backup. $$99 once, 14-day money-back.",
+    "description": "Nudge text when the free folder cap is hit. $1 = current count, $2 = cap. $$ escapes a literal dollar sign."
+  },
+  "optFolderDelete": {
+    "message": "Delete",
+    "description": "Delete-folder button."
+  },
+  "optFolderDeleteAria": {
+    "message": "Delete folder $1",
+    "description": "aria-label for the delete-folder button. $1 = folder name."
+  },
+  "optFolderMeta": {
+    "message": "$1 chats filed",
+    "description": "Folder row meta line. $1 = number of assigned conversations."
+  },
+  "optFolderNameTaken": {
+    "message": "A folder with this name already exists.",
+    "description": "Shown when a duplicate folder name is entered."
+  },
+  "optFolderNeedName": {
+    "message": "Give the folder a name.",
+    "description": "Shown when the folder name is empty."
+  },
+  "optFolderPh": {
+    "message": "New folder name",
+    "description": "Placeholder for the new-folder input."
+  },
+  "optFolderProCap": {
+    "message": "You've reached the 200-folder safety limit.",
+    "description": "Shown at the Pro hard folder cap."
+  },
+  "optFolderRename": {
+    "message": "Rename",
+    "description": "Rename-folder button."
+  },
+  "optFolderRenameAria": {
+    "message": "Rename folder $1",
+    "description": "aria-label for the rename-folder button. $1 = folder name."
+  },
+  "optFoldersEmpty": {
+    "message": "Create Work, Personal, Projects, then drag chats onto them.",
+    "description": "Empty-state body for the folder list."
+  },
+  "optFoldersEmptyHead": {
+    "message": "No folders yet",
+    "description": "Empty-state headline for the folder list."
+  },
+  "optFoldersHeading": {
+    "message": "Folders",
+    "description": "Folders section heading."
+  },
+  "optFoldersSub": {
+    "message": "Group conversations on chat.mistral.ai. Deleting a folder only unfiles its chats, never deletes them.",
+    "description": "Folders section sub-line."
+  },
+  "optFoldersToggleAria": {
+    "message": "Show conversation folders on chat.mistral.ai",
+    "description": "aria-label for the folders feature switch."
+  },
+  "optFoldersToggleHint": {
+    "message": "Conversation folders beside the Le Chat sidebar.",
+    "description": "Folders feature switch hint."
+  },
+  "optFoldersToggleLabel": {
+    "message": "Folders",
+    "description": "Folders feature switch label."
+  },
+  "optGeneralHeading": {
+    "message": "General",
+    "description": "General section heading."
+  },
+  "optLicenseActive": {
+    "message": "License active on this device",
+    "description": "Shown when the stored license key cannot be displayed."
+  },
+  "optLicenseAria": {
+    "message": "Pro license key",
+    "description": "aria-label for the license key input."
+  },
+  "optLicenseGetPro": {
+    "message": "Unlock Le Chat Suite Pro",
+    "description": "Ghost button next to the license form that opens pricing."
+  },
+  "optLicenseNoKey": {
+    "message": "No key yet?",
+    "description": "Lead-in before the pricing ghost button."
+  },
+  "optLicenseSub": {
+    "message": "Paste your Pro key to unlock every cap on this device.",
+    "description": "License section sub-line."
+  },
+  "optNavLabel": {
+    "message": "Options",
+    "description": "Muted label next to the product name in the options nav."
+  },
+  "optPrivacyBody": {
+    "message": "Le Chat Suite keeps your chats on this device. They never leave it and nothing about them is sent anywhere. The only network call is license activation.",
+    "description": "Privacy section body."
+  },
+  "optPrivacyFine": {
+    "message": "Deleting a folder only unfiles its chats. Nothing in your Mistral account is ever changed.",
+    "description": "Privacy section fine print."
+  },
+  "optPrivacyHeading": {
+    "message": "Privacy",
+    "description": "Privacy section heading."
+  },
+  "optPromptAdd": {
+    "message": "Save prompt",
+    "description": "Submit button of the new-prompt form."
+  },
+  "optPromptBodyAria": {
+    "message": "Prompt text",
+    "description": "aria-label for the prompt body textarea."
+  },
+  "optPromptBodyPh": {
+    "message": "Prompt text, inserted exactly as written",
+    "description": "Placeholder for the prompt body textarea."
+  },
+  "optPromptCap": {
+    "message": "$1 of $2 prompts saved. Pro lifts the cap and adds colors, PDF and backup. $$99 once, 14-day money-back.",
+    "description": "Nudge text when the free prompt cap is hit. $1 = current count, $2 = cap. $$ escapes a literal dollar sign."
+  },
+  "optPromptDelete": {
+    "message": "Delete",
+    "description": "Delete-prompt button."
+  },
+  "optPromptDeleteAria": {
+    "message": "Delete prompt $1",
+    "description": "aria-label for the delete-prompt button. $1 = prompt title."
+  },
+  "optPromptEdit": {
+    "message": "Edit",
+    "description": "Edit-prompt button."
+  },
+  "optPromptEditAria": {
+    "message": "Edit prompt $1",
+    "description": "aria-label for the edit-prompt button. $1 = prompt title."
+  },
+  "optPromptNeedBoth": {
+    "message": "Give the prompt a title and some text.",
+    "description": "Shown when a prompt is saved without a title or body."
+  },
+  "optPromptProCap": {
+    "message": "You've reached the 500-prompt safety limit.",
+    "description": "Shown at the Pro hard prompt cap."
+  },
+  "optPromptTitleAria": {
+    "message": "Prompt title",
+    "description": "aria-label for the prompt title input."
+  },
+  "optPromptTitlePh": {
+    "message": "Prompt title",
+    "description": "Placeholder for the prompt title input."
+  },
+  "optPromptsEmpty": {
+    "message": "Save the prompts you reach for every week. Insert them in one click.",
+    "description": "Empty-state body for the prompt list."
+  },
+  "optPromptsEmptyHead": {
+    "message": "No prompts yet",
+    "description": "Empty-state headline for the prompt list."
+  },
+  "optPromptsHeading": {
+    "message": "Saved prompts",
+    "description": "Prompts section heading."
+  },
+  "optPromptsSub": {
+    "message": "Reusable text you drop into the composer in one click. It lands at the caret, exactly as written.",
+    "description": "Prompts section sub-line."
+  },
+  "optPromptsToggleAria": {
+    "message": "Show the saved-prompt library on chat.mistral.ai",
+    "description": "aria-label for the prompts feature switch."
+  },
+  "optPromptsToggleHint": {
+    "message": "Your prompt library with one-click insert.",
+    "description": "Prompts feature switch hint."
+  },
+  "optPromptsToggleLabel": {
+    "message": "Saved prompts",
+    "description": "Prompts feature switch label."
+  },
+  "optRestoreBad": {
+    "message": "That file isn't a Le Chat Suite backup. Choose your exported JSON file.",
+    "description": "Shown when a restore file fails validation."
+  },
+  "optRestoreBtn": {
+    "message": "Restore from file",
+    "description": "Pro button that opens the restore file picker."
+  },
+  "optRestoreConfirm": {
+    "message": "Replace your current folders, prompts and assignments with this backup?",
+    "description": "Confirm prompt before a restore writes."
+  },
+  "optRestoreDone": {
+    "message": "Backup restored. Your folders and prompts are back.",
+    "description": "Shown after a successful restore."
+  },
+  "optRestoreFail": {
+    "message": "The restore couldn't be saved. Try again.",
+    "description": "Shown when a restore write fails."
+  },
+  "optRestoreFileAria": {
+    "message": "Choose a backup file",
+    "description": "aria-label for the hidden restore file input."
+  },
+  "optRestoreYes": {
+    "message": "Yes, restore",
+    "description": "Confirm button that runs the restore."
+  },
+  "optSave": {
+    "message": "Save",
+    "description": "Save an inline edit."
+  },
+  "optStorageFail": {
+    "message": "Changes can't be saved right now (storage full).",
+    "description": "Shown when a storage write fails."
+  },
+  "optTitle": {
+    "message": "Le Chat Suite",
+    "description": "Options page title."
+  },
+  "optUsage": {
+    "message": "$1 of $2 used",
+    "description": "Section usage line on the free tier. $1 = current count, $2 = cap."
+  },
+  "optUsagePro": {
+    "message": "$1 · unlimited",
+    "description": "Section usage line on Pro. $1 = current count."
+  },
+  "optWipeBtn": {
+    "message": "Erase data",
+    "description": "Button that arms the data wipe."
+  },
+  "optWipeConfirm": {
+    "message": "This cannot be undone. Your license is kept. Erase everything?",
+    "description": "Double-confirm text before the data wipe."
+  },
+  "optWipeDone": {
+    "message": "All data erased. Your license is untouched.",
+    "description": "Shown after the data wipe completes."
+  },
+  "optWipeHint": {
+    "message": "Removes folders, prompts, assignments and settings on this device. Your Pro license stays active.",
+    "description": "Data wipe hint."
+  },
+  "optWipeLabel": {
+    "message": "Erase all Le Chat Suite data",
+    "description": "Data wipe row label."
+  },
+  "optWipeNo": {
+    "message": "Keep my data",
+    "description": "Button that cancels the data wipe."
+  },
+  "optWipeYes": {
+    "message": "Yes, erase",
+    "description": "Button that confirms the data wipe."
+  },
+  "pageThemeLabel": {
+    "message": "Page theme",
+    "description": "aria-label for the page theme segmented control."
+  },
+  "popCapFolders": {
+    "message": "$1 of $2 folders used. Pro removes the limit for good.",
+    "description": "Popup hero cap note for folders. $1 = current count, $2 = cap."
+  },
+  "popCapPrompts": {
+    "message": "$1 of $2 prompts used. Pro removes the limit for good.",
+    "description": "Popup hero cap note for prompts. $1 = current count, $2 = cap."
+  },
+  "popEnableAria": {
+    "message": "Enable Le Chat Suite everywhere",
+    "description": "aria-label for the popup master switch."
+  },
+  "popEnableLabel": {
+    "message": "Enable Le Chat Suite",
+    "description": "Popup master switch label."
+  },
+  "popExportCaption": {
+    "message": "Export",
+    "description": "Popup export hint card eyebrow."
+  },
+  "popExportHint": {
+    "message": "On chat.mistral.ai, open the Le Chat Suite panel and choose Export ▸ Markdown to save any chat. Scroll up first to load older messages.",
+    "description": "Popup export hint body."
+  },
+  "popExportToggle": {
+    "message": "Export",
+    "description": "Popup export switch label."
+  },
+  "popExportToggleAria": {
+    "message": "Show export controls on chat.mistral.ai",
+    "description": "aria-label for the popup export switch."
+  },
+  "popFoldersLabel": {
+    "message": "folders used",
+    "description": "Popup hero label under the folder count."
+  },
+  "popFoldersLabelPro": {
+    "message": "folders · no limit on Pro",
+    "description": "Popup hero label under the folder count on Pro."
+  },
+  "popFoldersToggle": {
+    "message": "Folders",
+    "description": "Popup folders switch label."
+  },
+  "popFoldersToggleAria": {
+    "message": "Show conversation folders on chat.mistral.ai",
+    "description": "aria-label for the popup folders switch."
+  },
+  "popHeroCaption": {
+    "message": "Your library",
+    "description": "Popup hero eyebrow."
+  },
+  "popNudgeBackup": {
+    "message": "Backup and restore are a Pro unlock. One JSON file holds everything. $$99 once, yours forever. 14-day money-back.",
+    "description": "Popup nudge text for the locked backup teaser. $$ escapes a literal dollar sign."
+  },
+  "popNudgeColors": {
+    "message": "Folder colors are a Pro unlock. Spot any project at a glance. $$99 once covers every Pro feature. 14-day money-back.",
+    "description": "Popup nudge text for the locked colors teaser. $$ escapes a literal dollar sign."
+  },
+  "popNudgePdf": {
+    "message": "PDF export is a Pro unlock. Print-perfect transcripts in one click. $$99 once, not a subscription. 14-day money-back.",
+    "description": "Popup nudge text for the locked PDF teaser. $$ escapes a literal dollar sign."
+  },
+  "popOfCap": {
+    "message": "of $1",
+    "description": "Popup hero 'of N' beside the big number on free. $1 = cap."
+  },
+  "popOptionsBtn": {
+    "message": "Options",
+    "description": "Popup footer button that opens the options page."
+  },
+  "popPromptsLine": {
+    "message": "$1 of $2 prompts saved",
+    "description": "Popup prompts meter line on free. $1 = current count, $2 = cap."
+  },
+  "popPromptsLinePro": {
+    "message": "$1 prompts saved · unlimited",
+    "description": "Popup prompts meter line on Pro. $1 = current count."
+  },
+  "popPromptsToggle": {
+    "message": "Saved prompts",
+    "description": "Popup prompts switch label."
+  },
+  "popPromptsToggleAria": {
+    "message": "Show the saved-prompt library on chat.mistral.ai",
+    "description": "aria-label for the popup prompts switch."
+  },
+  "popProCaption": {
+    "message": "Le Chat Suite Pro",
+    "description": "Popup Pro teasers card eyebrow."
+  },
+  "popTeaserBackup": {
+    "message": "Backup & restore",
+    "description": "Popup locked teaser label."
+  },
+  "popTeaserBackupNote": {
+    "message": "One JSON file for everything.",
+    "description": "Popup locked teaser note."
+  },
+  "popTeaserColors": {
+    "message": "Folder colors",
+    "description": "Popup locked teaser label."
+  },
+  "popTeaserColorsNote": {
+    "message": "Spot any project at a glance.",
+    "description": "Popup locked teaser note."
+  },
+  "popTeaserPdf": {
+    "message": "PDF export",
+    "description": "Popup locked teaser label."
+  },
+  "popTeaserPdfNote": {
+    "message": "Print-perfect transcripts in one click.",
+    "description": "Popup locked teaser note."
+  },
+  "popTitle": {
+    "message": "Le Chat Suite",
+    "description": "Product name used in page titles and headers."
+  },
+  "popTogglesCaption": {
+    "message": "Quick toggles",
+    "description": "Popup quick-toggles card eyebrow."
+  },
+  "popUnlimitedWord": {
+    "message": "unlimited",
+    "description": "Popup hero word beside the big number on Pro."
+  },
+  "popUpgradeAria": {
+    "message": "Unlock Le Chat Suite Pro",
+    "description": "aria-label for the popup upgrade button."
+  },
+  "popUpgradeCta": {
+    "message": "Unlock Le Chat Suite Pro",
+    "description": "Popup upgrade button label."
+  },
+  "popUpgradeEyebrow": {
+    "message": "Upgrade",
+    "description": "Popup upgrade card eyebrow."
+  },
+  "popUpgradeLine": {
+    "message": "Unlimited folders and prompts, folder colors, PDF export, and backup. $$4.99/mo, cancel anytime, or $$99 once. 14-day money-back guarantee.",
+    "description": "Popup upgrade card one-liner. $$ escapes a literal dollar sign."
+  },
+  "proFeatBackup": {
+    "message": "JSON backup and restore of everything",
+    "description": "Pro unlock bullet in the options sidebar."
+  },
+  "proFeatColors": {
+    "message": "Folder colors to spot any project",
+    "description": "Pro unlock bullet in the options sidebar."
+  },
+  "proFeatPdf": {
+    "message": "PDF export for printable transcripts",
+    "description": "Pro unlock bullet in the options sidebar."
+  },
+  "proFeatVolume": {
+    "message": "Up to 200 folders and 500 prompts",
+    "description": "Pro unlock bullet in the options sidebar."
+  },
+  "proGuarantee": {
+    "message": "14-day money-back guarantee. If it is not for you, we refund it.",
+    "description": "Honest guarantee line under the Pro CTA."
+  },
+  "proOnce": {
+    "message": "One payment unlocks Pro forever. $$99 once, not a subscription. Prefer monthly? $$4.99/mo on the same page.",
+    "description": "Lifetime reframe under the Pro CTA. $$ escapes a literal dollar sign."
+  },
+  "sidebarCta": {
+    "message": "Unlock Pro · $$99 once",
+    "description": "Main Pro CTA in the options sidebar. $$ escapes a literal dollar sign."
+  },
+  "sidebarMadeBy": {
+    "message": "Made by",
+    "description": "Lead-in before the brand link in the options footer."
+  },
+  "sidebarProEyebrow": {
+    "message": "Unlock Le Chat Suite Pro",
+    "description": "Eyebrow of the options sidebar Pro card."
+  },
+  "sidebarProHead": {
+    "message": "Find every chat. Reuse every prompt.",
+    "description": "Headline benefit of the options sidebar Pro card."
+  },
+  "themeAuto": {
+    "message": "Auto",
+    "description": "Theme choice: follow the system."
+  },
+  "themeDark": {
+    "message": "Dark",
+    "description": "Theme choice: dark."
+  },
+  "themeLight": {
+    "message": "Light",
+    "description": "Theme choice: light."
+  },
+  "upgradeBtn": {
+    "message": "Unlock Pro",
+    "description": "Upgrade button inside inline nudges."
+  },
+  "csProFeature": {
+    "message": "Unlocks with Pro",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csFolderColorsPro": {
+    "message": "Folder colors are a Pro unlock. Spot any project at a glance. $$99 once, 14-day money-back.",
+    "description": "Content-script UI string (injected Le Chat panel). $$ escapes a literal dollar sign."
+  },
+  "csCapFolders": {
+    "message": "$1 of $2 folders used. Pro lifts the cap for good. $$99 once, 14-day money-back.",
+    "description": "Content-script cap note for folders. $1 = current count, $2 = cap. $$ escapes a literal dollar sign."
+  },
+  "csCapPrompts": {
+    "message": "$1 of $2 prompts saved. Pro lifts the cap for good. $$99 once, 14-day money-back.",
+    "description": "Content-script cap note for prompts. $1 = current count, $2 = cap. $$ escapes a literal dollar sign."
+  },
+  "csUpgradeToPro": {
+    "message": "Unlock Pro",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csUpgrade": {
+    "message": "Unlock Pro",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csMaybeLater": {
+    "message": "Maybe later",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csCancel": {
+    "message": "Cancel",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csSave": {
+    "message": "Save",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csUntitledConversation": {
+    "message": "Untitled chat",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csUntitledPrompt": {
+    "message": "Untitled",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csFolders": {
+    "message": "Folders",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csPrompts": {
+    "message": "Prompts",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csExport": {
+    "message": "Export",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csExportMd": {
+    "message": "Export Markdown",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csExportPdf": {
+    "message": "Export PDF",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csPdfPro": {
+    "message": "PDF export is a Pro unlock. Print-perfect transcripts in one click. $$99 once, 14-day money-back.",
+    "description": "Content-script UI string (injected Le Chat panel). $$ escapes a literal dollar sign."
+  },
+  "csPdfTitle": {
+    "message": "Save this chat as a print-ready PDF",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csOpenConv": {
+    "message": "Open a chat to export it",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csMdLoadedTitle": {
+    "message": "Save the loaded chat as .md. Scroll up first to load older messages.",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csFolderName": {
+    "message": "Folder name",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csNewFolderName": {
+    "message": "New folder name",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csFolderColor": {
+    "message": "Folder color",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csDeleteFolder": {
+    "message": "Delete folder (chats stay in Le Chat)",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csConfirmDeleteFolder": {
+    "message": "Click again to delete (chats stay in Le Chat)",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csMoveToFolderLabel": {
+    "message": "Move to folder:",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csNoOtherFolder": {
+    "message": "No other folder yet. Create one above.",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csMoveToAnother": {
+    "message": "Move to another folder",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csRemoveFromFolder": {
+    "message": "Remove from folder",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csDragHint": {
+    "message": "Drag a chat here, or use “Move this chat”.",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csCreateFolder": {
+    "message": "Create folder",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csNewFolder": {
+    "message": "+ New folder",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csMoveThisChat": {
+    "message": "Move this chat ▸",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csPromptTitle": {
+    "message": "Prompt title",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csPromptBody": {
+    "message": "Prompt text",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csPromptBodyHint": {
+    "message": "Prompt text, inserted at the caret when you use it",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csSaveChanges": {
+    "message": "Save changes",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csSavePrompt": {
+    "message": "Save prompt",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csSearchPrompts": {
+    "message": "Search prompts",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csNoPrompts": {
+    "message": "No saved prompts yet. Save your first one above.",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csNoPromptsMatch": {
+    "message": "No prompts match that search.",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csEditPrompt": {
+    "message": "Edit prompt",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csDeletePrompt": {
+    "message": "Delete prompt",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csConfirmDelete": {
+    "message": "Click again to delete",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csInsert": {
+    "message": "Insert",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csClickComposer": {
+    "message": "Click into the message box first.",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csNewPrompt": {
+    "message": "+ New prompt",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csIdle": {
+    "message": "Le Chat Suite is idle on this page state.",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csCollapse": {
+    "message": "Collapse to a floating button",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csReadonly": {
+    "message": "Changes can’t be saved right now (storage full).",
+    "description": "Content-script UI string (injected Le Chat panel)."
+  },
+  "csColorN": {
+    "message": "Color $1",
+    "description": "Folder color swatch label; $1 = swatch number."
+  }
+}

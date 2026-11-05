@@ -1,0 +1,349 @@
+/* Le Chat Suite popup — surface styles on top of src/styles/zovo-base.css.
+   Uses the --zovo-* tokens as-is (the apply-identity step forks this base into
+   the hue-300 lech3a91 identity later — do NOT hand-invent a palette here).
+   Brief AA lock for after identity: primary #d147d1 is mid-luminance, so any
+   text/icon on primary must be dark #2b0a2b; on primaryDark it is white.
+   Popup width 360px (fleet standard). All custom classes prefixed lech3a91-. */
+
+/* Author display rules beat the UA [hidden] style — restore it explicitly. */
+[hidden] { display: none !important; }
+
+.lech3a91-popup {
+  margin: 0;
+  width: var(--zovo-popup-w);
+  background: var(--zovo-surface);
+  /* The engine base scopes text color to body.zovo only (fleet bases apply it
+     to bare body); mirror the base's typography block here so dark-mode body
+     text uses --zovo-text instead of the UA default black. */
+  font-family: var(--zovo-font);
+  font-size: var(--zovo-fs-body);
+  line-height: var(--zovo-lh);
+  color: var(--zovo-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.lech3a91-popup__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-3);
+  padding: var(--zovo-space-4);
+  max-height: var(--zovo-popup-maxh);
+  overflow-y: auto;
+}
+
+/* ---- Header ------------------------------------------------------------ */
+.lech3a91-pop-head {
+  display: flex;
+  align-items: center;
+  gap: var(--zovo-space-2);
+  padding: 0 var(--zovo-space-1);
+}
+.lech3a91-pop-logo { flex: none; border-radius: 6px; }
+.lech3a91-pop-title {
+  margin: 0;
+  font-size: var(--zovo-fs-subheading);
+  font-weight: var(--zovo-fw-heading);
+  letter-spacing: -0.01em;
+}
+.lech3a91-pop-head .zovo-badge { margin-left: auto; }
+
+/* ---- Hero: usage vs caps (the ONE elevated card) ----------------------- */
+.lech3a91-pop-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-3);
+  padding: var(--zovo-space-5);
+}
+.lech3a91-pop-hero .zovo-eyebrow { margin: 0; }
+.lech3a91-pop-hero__num {
+  display: flex;
+  align-items: baseline;
+  gap: var(--zovo-space-2);
+  margin: 0;
+  font-size: var(--zovo-fs-hero);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--zovo-primary);
+}
+.lech3a91-pop-hero__of {
+  font-size: var(--zovo-fs-subheading);
+  font-weight: var(--zovo-fw-heading);
+  letter-spacing: 0;
+  color: var(--zovo-text-secondary);
+}
+.lech3a91-pop-hero__label {
+  margin: var(--zovo-space-1) 0 0;
+  font-size: 11px;
+  font-weight: var(--zovo-fw-heading);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--zovo-text-secondary);
+}
+.lech3a91-pop-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-2);
+}
+.lech3a91-pop-meter__line {
+  font-size: 13px;
+  color: var(--zovo-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.lech3a91-pop-meter__bar { height: 4px; }
+.lech3a91-pop-hero__cap {
+  margin: 0;
+  padding: var(--zovo-space-2) var(--zovo-space-3);
+  font-size: 12px;
+  color: var(--zovo-text-secondary);
+  background: var(--zovo-surface);
+  border-left: 3px solid var(--zovo-pro);
+  border-radius: var(--zovo-radius-btn);
+}
+
+/* ---- Quick toggles ------------------------------------------------------ */
+.lech3a91-pop-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-1);
+  padding: var(--zovo-space-4);
+}
+.lech3a91-pop-toggles .zovo-eyebrow { margin: 0 0 var(--zovo-space-1); }
+
+.lech3a91-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--zovo-space-3);
+  min-height: 40px;
+  cursor: pointer;
+}
+.lech3a91-row__label {
+  font-size: var(--zovo-fs-body);
+  font-weight: var(--zovo-fw-medium);
+}
+
+/* Switch (checkbox + track; the input stays the real focusable control) */
+.lech3a91-switch { position: relative; display: inline-flex; flex: none; }
+.lech3a91-switch__input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.lech3a91-switch__track {
+  width: 40px;
+  height: 24px;
+  border-radius: var(--zovo-radius-pill);
+  background: var(--zovo-border);
+  position: relative;
+  transition: background var(--zovo-transition);
+  pointer-events: none;
+}
+.lech3a91-switch__track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--zovo-shadow-sm);
+  transition: transform var(--zovo-transition);
+}
+.lech3a91-switch__input:checked + .lech3a91-switch__track { background: var(--zovo-primary); }
+.lech3a91-switch__input:checked + .lech3a91-switch__track::after { transform: translateX(16px); }
+.lech3a91-switch__input:focus-visible + .lech3a91-switch__track {
+  box-shadow: 0 0 0 2px var(--zovo-bg), 0 0 0 4px var(--zovo-primary);
+}
+.lech3a91-switch__input:disabled + .lech3a91-switch__track { opacity: 0.55; }
+
+/* ---- Export hint --------------------------------------------------------- */
+.lech3a91-pop-export { padding: var(--zovo-space-4); }
+.lech3a91-pop-export .zovo-eyebrow { margin: 0 0 var(--zovo-space-1); }
+.lech3a91-pop-export__text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--zovo-text-secondary);
+}
+
+/* ---- Pro teasers (locked but visible) ------------------------------------- */
+.lech3a91-pop-pro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-1);
+  padding: var(--zovo-space-4);
+}
+.lech3a91-pop-pro .zovo-eyebrow { margin: 0 0 var(--zovo-space-1); }
+
+.lech3a91-teaser {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "label lock" "note lock";
+  align-items: center;
+  column-gap: var(--zovo-space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--zovo-space-2) var(--zovo-space-3);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: var(--zovo-radius-btn);
+  cursor: pointer;
+  transition: background var(--zovo-transition);
+}
+.lech3a91-teaser:hover { background: var(--zovo-primary-50); }
+.lech3a91-teaser:focus-visible {
+  outline: 2px solid var(--zovo-primary);
+  outline-offset: -2px;
+}
+.lech3a91-teaser__label {
+  grid-area: label;
+  font-weight: var(--zovo-fw-medium);
+}
+.lech3a91-teaser__note {
+  grid-area: note;
+  font-size: 12px;
+  color: var(--zovo-text-secondary);
+}
+.lech3a91-teaser__lock { grid-area: lock; }
+
+/* Inline nudge revealed at the cap-hit / locked-click moment */
+.lech3a91-nudge {
+  margin-top: var(--zovo-space-2);
+  padding: var(--zovo-space-3) var(--zovo-space-4);
+  background: var(--zovo-bg);
+  border: 1px solid var(--zovo-border);
+  border-left: 3px solid var(--zovo-pro);
+  border-radius: var(--zovo-radius-btn);
+}
+.lech3a91-nudge__text { margin: 0; font-size: 13px; }
+.lech3a91-nudge__actions {
+  display: flex;
+  gap: var(--zovo-space-2);
+  margin-top: var(--zovo-space-2);
+}
+
+/* ---- Upgrade card (free; the one upgrade action) --------------------------- */
+.lech3a91-pop-upgrade {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-2);
+  padding: var(--zovo-space-4);
+  border-color: var(--zovo-pro);
+}
+.lech3a91-pop-upgrade .zovo-eyebrow { margin: 0; }
+.lech3a91-pop-upgrade__line {
+  margin: 0;
+  font-size: 13px;
+  color: var(--zovo-text-secondary);
+}
+
+/* ---- Footer ------------------------------------------------------------------- */
+.lech3a91-pop-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--zovo-space-2);
+  padding: var(--zovo-space-1) var(--zovo-space-1) 0;
+  font-size: var(--zovo-fs-caption);
+  color: var(--zovo-text-secondary);
+}
+.lech3a91-foot__links {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--zovo-space-3);
+}
+.lech3a91-link {
+  color: var(--zovo-primary);
+  text-decoration: none;
+}
+.lech3a91-link:hover { text-decoration: underline; }
+.lech3a91-link:focus-visible {
+  outline: 2px solid var(--zovo-primary);
+  outline-offset: 1px;
+  border-radius: 2px;
+}
+.lech3a91-pop-brand { font-weight: var(--zovo-fw-heading); }
+
+/* Compact theme segmented control (radiogroup; aria-checked on every item) */
+.lech3a91-seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--zovo-surface-2);
+  border-radius: var(--zovo-radius-pill);
+}
+.lech3a91-seg__item {
+  min-height: 28px;
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--zovo-text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: var(--zovo-radius-pill);
+  cursor: pointer;
+  transition: background var(--zovo-transition), color var(--zovo-transition);
+}
+.lech3a91-seg__item[aria-checked='true'] {
+  background: var(--zovo-bg);
+  color: var(--zovo-text);
+  font-weight: var(--zovo-fw-heading);
+  box-shadow: var(--zovo-shadow-sm);
+}
+.lech3a91-seg__item:focus-visible {
+  outline: 2px solid var(--zovo-primary);
+  outline-offset: 1px;
+}
+
+/* Small button modifier (compact popup actions) */
+.lech3a91-btn--sm {
+  min-height: 32px;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ---- AA overrides (DESIGN-SYSTEM §8: dark text on gold) ---------------------
+   The fleet base ships white-on-gold (--zovo-on-pro #FFFFFF on #F59E0B =
+   2.1:1) for the Pro CTA and the solid Pro tier badge — that fails AA. Dark
+   brown #332700 clears 6.4:1 on gold and 4.6:1 on the --zovo-pro-dark hover
+   state. The outline Pro badge's gold text on white is also 2.1:1 — deepen to
+   amber-700 (5.0:1) in light mode; in dark mode the base gold on the dark
+   surface clears 7:1, so revert to the token there. */
+.zovo-btn--pro { color: #332700; }
+.zovo-badge--pro { color: #332700; }
+.zovo-pro-badge { color: #b45309; border-color: #b45309; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .zovo-pro-badge {
+    color: var(--zovo-pro);
+    border-color: var(--zovo-pro);
+  }
+}
+:root[data-theme='dark'] .zovo-pro-badge {
+  color: var(--zovo-pro);
+  border-color: var(--zovo-pro);
+}
+
+/* ---- AA overrides, light mode (WCAG 2 AA 4.5:1) -----------------------------
+   --zovo-text-secondary #6B7280 on the --zovo-surface-2 #F1F2F4 segment track
+   and Free badge = 4.31:1 — just under AA (axe color-contrast, live-QA 07).
+   #646D7B clears 4.67:1 on that surface and 5.2:1 on white, staying in the
+   same slate family. Dark mode's #A1A1AA on #232338 already clears 6:1, so
+   revert to the token there. */
+.zovo-badge--free { color: #646D7B; }
+.lech3a91-seg__item { color: #646D7B; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .zovo-badge--free,
+  :root:not([data-theme='light']) .lech3a91-seg__item {
+    color: var(--zovo-text-secondary);
+  }
+}
+:root[data-theme='dark'] .zovo-badge--free,
+:root[data-theme='dark'] .lech3a91-seg__item {
+  color: var(--zovo-text-secondary);
+}

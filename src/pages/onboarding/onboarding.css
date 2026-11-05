@@ -1,0 +1,113 @@
+/*
+ * onboarding.css — Le Chat Suite onboarding base (hue-300 brand tokens).
+ * The premium onboarding (onboarding-premium.html) inlines its critical CSS
+ * for a zero-dependency first paint; this sheet carries the same locked
+ * palette as shared tokens for any auxiliary onboarding surface. Palette
+ * (locked): primary #d147d1, primaryDark #ab2bab, primaryLight #e48be4,
+ * primary50 #fbeefb, accent #8c47d1, surface #fbf9fb, border #e8e3e8.
+ * AA rule: text/icons on primary are dark #2b0a2b (>=4.6:1); text on
+ * primaryDark / accent is white (>=4.5:1).
+ */
+
+:root {
+  --zovo-primary: #d147d1;
+  --zovo-primary-dark: #ab2bab;
+  --zovo-primary-light: #e48be4;
+  --zovo-primary-50: #fbeefb;
+  --zovo-accent: #8c47d1;
+  --zovo-on-primary: #2b0a2b;
+  --zovo-bg: #ffffff;
+  --zovo-surface: #fbf9fb;
+  --zovo-text: #2b0a2b;
+  --zovo-text-secondary: #6b5566;
+  --zovo-border: #e8e3e8;
+  --zovo-success: #1d7a4f;
+  --zovo-warning: #9a6a00;
+  --zovo-error: #c0392b;
+  --zovo-pro: #8c47d1;
+  --zovo-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --zovo-shadow: 0 4px 6px -1px rgba(43, 10, 43, 0.1), 0 2px 4px -1px rgba(43, 10, 43, 0.06);
+  --zovo-radius-card: 8px;
+  --zovo-radius-btn: 6px;
+  --zovo-radius-input: 4px;
+  --zovo-transition: 150ms ease-in-out;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.zovo-onboarding-body {
+  font-family: var(--zovo-font);
+  background: var(--zovo-surface);
+  color: var(--zovo-text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.zovo-onboarding {
+  width: 100%;
+  max-width: 440px;
+  background: var(--zovo-bg);
+  border: 1px solid var(--zovo-border);
+  border-radius: 16px;
+  box-shadow: var(--zovo-shadow);
+  padding: 40px 32px 24px;
+  text-align: center;
+}
+
+.zovo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: var(--zovo-radius-btn);
+  cursor: pointer;
+  transition: background var(--zovo-transition), transform 100ms, box-shadow var(--zovo-transition);
+}
+.zovo-btn:active { transform: scale(0.98); }
+.zovo-btn:focus-visible {
+  outline: 2px solid var(--zovo-primary-dark);
+  outline-offset: 2px;
+}
+/* AA: dark text on mid-luminance primary. */
+.zovo-btn--primary { background: var(--zovo-primary); color: var(--zovo-on-primary); font-weight: 700; }
+.zovo-btn--primary:hover { background: var(--zovo-primary-light); }
+.zovo-btn--secondary {
+  background: var(--zovo-surface);
+  color: var(--zovo-primary-dark);
+  border: 1px solid var(--zovo-border);
+}
+.zovo-btn--secondary:hover { border-color: var(--zovo-primary); }
+.zovo-btn--ghost {
+  background: none;
+  color: var(--zovo-text-secondary);
+  padding: 8px 16px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.zovo-btn--ghost:hover { color: var(--zovo-primary-dark); }
+.zovo-btn[disabled] { opacity: 0.6; cursor: default; }
+
+@media (prefers-reduced-motion: reduce) {
+  .zovo-btn { transition: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --zovo-bg: #241426;
+    --zovo-surface: #1c1020;
+    --zovo-text: #f5e9f4;
+    --zovo-text-secondary: #c9b3c7;
+    --zovo-border: #3d2a40;
+    --zovo-primary-50: #33152f;
+    --zovo-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  }
+}

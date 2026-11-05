@@ -1,0 +1,30 @@
+/* zovo-sidebar.css — Le Chat Suite options conversion sidebar styles.
+   Mounted from engine/5-design-ux-ui-monetization/monetization/zovo-sidebar.css
+   (SLUG=le-chat-suite). Token-driven (zovo-base.css --zovo-*); light+dark via
+   tokens. Adaptations for this extension's locked design rules:
+   - The template's Pro card is a --zovo-accent gradient with white text. That
+     fails this extension's AA lock twice over: the fleet base's --zovo-accent
+     here is TEAL (#00D2D3 — wrong brand family), and after the phase-5.9
+     apply-identity fork, text-on-primary must be DARK, which a baked gradient
+     cannot express. So .zs-card--pro is the calm premium card instead: gold
+     border + gold CTA carry the Pro hierarchy, text stays on --zovo-surface.
+   - .zs-x hover uses --zovo-primary-dark (not the teal accent).
+   - The sidebar width yields to the options grid rail (options.css sets
+     width:auto on .lech3a91-opt-sidebar). */
+.zovo-sidebar{display:flex;flex-direction:column;gap:14px;width:280px;flex:none}
+.zs-card{background:var(--zovo-surface,#fff);border:1px solid var(--zovo-border,#e5e7eb);border-radius:14px;padding:16px}
+.zs-card--pro{border-color:var(--zovo-pro);box-shadow:var(--zovo-shadow,0 4px 12px rgba(0,0,0,.08));color:var(--zovo-text,#1a1a2e)}
+.zs-card--pro .zs-sub{color:var(--zovo-text-secondary,#5b6472)}
+.zs-eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;font-weight:700;color:var(--zovo-text-secondary,#5b6472);margin:0 0 6px}
+.zs-h{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0 0 10px;line-height:1.25}
+.zs-stack{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--zovo-text,#1a1a2e)}
+.zs-stack li{padding-left:20px;position:relative}
+.zs-stack li::before{content:"✓";position:absolute;left:0;font-weight:800;color:var(--zovo-success)}
+.zs-sub{font-size:11.5px;margin:8px 0 0;text-align:center;color:var(--zovo-text-secondary,#5b6472)}
+.zs-x{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 2px;border-bottom:1px solid var(--zovo-border,#eee);text-decoration:none;color:var(--zovo-text,#1a1a2e);font-size:13px}
+.zs-x:last-of-type{border-bottom:none}
+.zs-x:hover .zs-x__nm{color:var(--zovo-primary-dark,#5A4BD1)}
+.zs-x__go{color:var(--zovo-text-secondary,#9aa)}
+.zs-foot{display:flex;gap:14px;justify-content:center;font-size:11.5px}
+.zs-foot a{color:var(--zovo-text-secondary,#8b98a9);text-decoration:none}
+.zs-foot a:hover{color:var(--zovo-primary-dark,#5A4BD1)}

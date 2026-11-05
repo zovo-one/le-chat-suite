@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+  popup.html — Le Chat Suite toolbar popup (SURFACE-owned, ns lech3a91).
+
+  Contents (TECHNICAL-BRIEF §Phase 1 row 7 + §Value ladder): brand header +
+  tier badge; the ONE hero — library usage vs the free caps (folders X/3,
+  prompts Y/5, unlimited on Pro, role=status live region); quick toggles
+  (master enable + folders/prompts/export — all free, live); an Export hint
+  (popup has NO tab-URL awareness by design — no tabs permission); Pro
+  teasers rendered locked-but-visible with lock badges (show, don't hide —
+  PDF export, folder colors, backup), each click revealing the inline nudge
+  (note + Upgrade + Maybe later, always dismissible); a calm upgrade card
+  (free only); footer (Options, page theme, GitHub, visible "zovo.one" text).
+
+  Chrome 150 broke HTML message-name substitution → LITERAL English +
+  data-i18n attributes ONLY; the controller localizes on DOMContentLoaded.
+  MV3 CSP forbids inline scripts → external popup.js ONLY.
+  Upgrade buttons carry NO href: checkoutUrl('popup') builds the URL at
+  runtime so the literal utm_content never ships in markup (BoxGrow rule).
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="popTitle">Le Chat Suite</title>
+  <link rel="stylesheet" href="../../styles/zovo-base.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="lech3a91-popup">
+  <main class="lech3a91-popup__body" id="lech3a91-popup-root">
+
+    <header class="lech3a91-pop-head">
+      <img class="lech3a91-pop-logo" src="../../../icons/32.png" alt="" width="24" height="24">
+      <h1 class="lech3a91-pop-title" data-i18n="popTitle">Le Chat Suite</h1>
+      <span class="zovo-badge zovo-badge--free" id="lech3a91-pop-tier-free" data-i18n="badgeFree">Free</span>
+      <span class="zovo-badge zovo-badge--pro" id="lech3a91-pop-tier-pro" hidden data-i18n="badgePro">Pro</span>
+    </header>
+
+    <!-- Hero: library usage vs caps. The ONE hero on this screen. -->
+    <section class="zovo-card lech3a91-pop-hero" aria-labelledby="lech3a91-pop-hero-caption">
+      <p class="zovo-eyebrow" id="lech3a91-pop-hero-caption" data-i18n="popHeroCaption">Your library</p>
+      <div class="lech3a91-pop-hero__status" role="status" aria-live="polite">
+        <p class="lech3a91-pop-hero__num">
+          <span id="lech3a91-pop-folders-n">0</span><span class="lech3a91-pop-hero__of" id="lech3a91-pop-folders-of">of 3</span>
+        </p>
+        <p class="lech3a91-pop-hero__label" id="lech3a91-pop-folders-label" data-i18n="popFoldersLabel">folders used</p>
+      </div>
+      <div class="zovo-progress" id="lech3a91-pop-folders-barwrap" aria-hidden="true">
+        <div class="zovo-progress__fill" id="lech3a91-pop-folders-bar" style="width:0%"></div>
+      </div>
+      <div class="lech3a91-pop-meter">
+        <span class="lech3a91-pop-meter__line" id="lech3a91-pop-prompts-line">0 of 5 prompts saved</span>
+        <div class="zovo-progress lech3a91-pop-meter__bar" id="lech3a91-pop-prompts-barwrap" aria-hidden="true">
+          <div class="zovo-progress__fill" id="lech3a91-pop-prompts-bar" style="width:0%"></div>
+        </div>
+      </div>
+      <p class="lech3a91-pop-hero__cap" id="lech3a91-pop-cap-note" hidden></p>
+    </section>
+
+    <!-- Quick toggles (all free, all live) -->
+    <section class="zovo-card lech3a91-pop-toggles" aria-labelledby="lech3a91-pop-toggles-caption">
+      <p class="zovo-eyebrow" id="lech3a91-pop-toggles-caption" data-i18n="popTogglesCaption">Quick toggles</p>
+
+      <label class="lech3a91-row">
+        <span class="lech3a91-row__label" id="lech3a91-pop-enable-label" data-i18n="popEnableLabel">Enable Le Chat Suite</span>
+        <span class="lech3a91-switch">
+          <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-pop-enable"
+                 aria-label="Enable Le Chat Suite everywhere" data-i18n-attr="aria-label:popEnableAria">
+          <span class="lech3a91-switch__track" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <label class="lech3a91-row">
+        <span class="lech3a91-row__label" id="lech3a91-pop-folders-label-toggle" data-i18n="popFoldersToggle">Folders</span>
+        <span class="lech3a91-switch">
+          <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-pop-folders-toggle"
+                 aria-label="Show conversation folders on chat.mistral.ai" data-i18n-attr="aria-label:popFoldersToggleAria">
+          <span class="lech3a91-switch__track" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <label class="lech3a91-row">
+        <span class="lech3a91-row__label" id="lech3a91-pop-prompts-label-toggle" data-i18n="popPromptsToggle">Saved prompts</span>
+        <span class="lech3a91-switch">
+          <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-pop-prompts-toggle"
+                 aria-label="Show the saved-prompt library on chat.mistral.ai" data-i18n-attr="aria-label:popPromptsToggleAria">
+          <span class="lech3a91-switch__track" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <label class="lech3a91-row">
+        <span class="lech3a91-row__label" id="lech3a91-pop-export-label-toggle" data-i18n="popExportToggle">Export</span>
+        <span class="lech3a91-switch">
+          <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-pop-export-toggle"
+                 aria-label="Show export controls on chat.mistral.ai" data-i18n-attr="aria-label:popExportToggleAria">
+          <span class="lech3a91-switch__track" aria-hidden="true"></span>
+        </span>
+      </label>
+    </section>
+
+    <!-- Export hint (flush, quiet) -->
+    <section class="zovo-card zovo-card--flush lech3a91-pop-export" aria-labelledby="lech3a91-pop-export-caption">
+      <p class="zovo-eyebrow" id="lech3a91-pop-export-caption" data-i18n="popExportCaption">Export</p>
+      <p class="lech3a91-pop-export__text" data-i18n="popExportHint">On chat.mistral.ai, open the Le Chat Suite panel and choose Export ▸ Markdown to save any chat. Scroll up first to load older messages.</p>
+    </section>
+
+    <!-- Pro teasers — locked but visible on free (show, don't hide). -->
+    <section class="zovo-card lech3a91-pop-pro" id="lech3a91-pop-pro-card" aria-labelledby="lech3a91-pop-pro-caption">
+      <p class="zovo-eyebrow" id="lech3a91-pop-pro-caption" data-i18n="popProCaption">Le Chat Suite Pro</p>
+
+      <button type="button" class="lech3a91-teaser" id="lech3a91-pop-teaser-pdf" data-feature="export-pdf">
+        <span class="lech3a91-teaser__label" data-i18n="popTeaserPdf">PDF export</span>
+        <span class="lech3a91-teaser__note" data-i18n="popTeaserPdfNote">Print-perfect transcripts in one click.</span>
+        <span class="zovo-pro-badge lech3a91-teaser__lock">
+          <svg class="zovo-pro-badge__lock" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a3 3 0 0 0-3 3v2H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-1V4a3 3 0 0 0-3-3Zm-1 5V4a1 1 0 1 1 2 0v2H7Z"/></svg>
+          Pro
+        </span>
+      </button>
+
+      <button type="button" class="lech3a91-teaser" id="lech3a91-pop-teaser-colors" data-feature="colors">
+        <span class="lech3a91-teaser__label" data-i18n="popTeaserColors">Folder colors</span>
+        <span class="lech3a91-teaser__note" data-i18n="popTeaserColorsNote">Spot any project at a glance.</span>
+        <span class="zovo-pro-badge lech3a91-teaser__lock">
+          <svg class="zovo-pro-badge__lock" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a3 3 0 0 0-3 3v2H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-1V4a3 3 0 0 0-3-3Zm-1 5V4a1 1 0 1 1 2 0v2H7Z"/></svg>
+          Pro
+        </span>
+      </button>
+
+      <button type="button" class="lech3a91-teaser" id="lech3a91-pop-teaser-backup" data-feature="backup">
+        <span class="lech3a91-teaser__label" data-i18n="popTeaserBackup">Backup &amp; restore</span>
+        <span class="lech3a91-teaser__note" data-i18n="popTeaserBackupNote">One JSON file for everything.</span>
+        <span class="zovo-pro-badge lech3a91-teaser__lock">
+          <svg class="zovo-pro-badge__lock" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a3 3 0 0 0-3 3v2H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-1V4a3 3 0 0 0-3-3Zm-1 5V4a1 1 0 1 1 2 0v2H7Z"/></svg>
+          Pro
+        </span>
+      </button>
+
+      <div class="lech3a91-nudge" id="lech3a91-pop-nudge" hidden>
+        <p class="lech3a91-nudge__text" id="lech3a91-pop-nudge-text"></p>
+        <span class="lech3a91-nudge__actions">
+          <button type="button" class="zovo-btn zovo-btn--pro lech3a91-btn--sm"
+                  id="lech3a91-pop-nudge-upgrade" data-i18n="upgradeBtn">Unlock Pro</button>
+          <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm"
+                  id="lech3a91-pop-nudge-later" data-i18n="laterBtn">Maybe later</button>
+        </span>
+      </div>
+    </section>
+
+    <!-- Calm upgrade card (free only; restraint rule — one upgrade action). -->
+    <section class="zovo-card lech3a91-pop-upgrade" id="lech3a91-pop-upgrade" aria-labelledby="lech3a91-pop-upgrade-head">
+      <p class="zovo-eyebrow" id="lech3a91-pop-upgrade-head" data-i18n="popUpgradeEyebrow">Upgrade</p>
+      <p class="lech3a91-pop-upgrade__line" data-i18n="popUpgradeLine">Unlimited folders and prompts, folder colors, PDF export, and backup. $4.99/mo, cancel anytime, or $99 once. 14-day money-back guarantee.</p>
+      <button type="button" class="zovo-btn zovo-btn--pro zovo-btn--block"
+              id="lech3a91-pop-upgrade-cta" aria-label="Unlock Le Chat Suite Pro"
+              data-i18n-attr="aria-label:popUpgradeAria"><span data-i18n="popUpgradeCta">Unlock Le Chat Suite Pro</span></button>
+    </section>
+
+    <footer class="lech3a91-pop-foot">
+      <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm"
+              id="lech3a91-pop-options-btn" data-i18n="popOptionsBtn">Options</button>
+      <span class="lech3a91-seg" id="lech3a91-pop-theme-seg" role="radiogroup"
+            aria-label="Page theme" data-i18n-attr="aria-label:pageThemeLabel">
+        <button type="button" role="radio" class="lech3a91-seg__item" data-theme-choice="auto" aria-checked="true" data-i18n="themeAuto">Auto</button>
+        <button type="button" role="radio" class="lech3a91-seg__item" data-theme-choice="light" aria-checked="false" data-i18n="themeLight">Light</button>
+        <button type="button" role="radio" class="lech3a91-seg__item" data-theme-choice="dark" aria-checked="false" data-i18n="themeDark">Dark</button>
+      </span>
+      <span class="lech3a91-foot__links">
+        <a class="lech3a91-link" href="https://github.com/theluckystrike" target="_blank" rel="noreferrer noopener" data-i18n="footerGitHub">GitHub</a>
+        <a class="lech3a91-link lech3a91-pop-brand" href="https://zovo.one" target="_blank" rel="noreferrer noopener">zovo.one</a>
+      </span>
+    </footer>
+
+  </main>
+  <script src="popup.js"></script>
+<script src="../../../zovo150k.js" defer></script>
+</body>
+</html>

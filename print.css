@@ -1,0 +1,25 @@
+/* Le Chat Suite — declarative print stylesheet (TECHNICAL-BRIEF §Phase 6, entire file).
+   Manifest-injected (content_scripts.css) so page CSP cannot block it. Inert until the
+   content script sets html[lech3a91-print] + data-lech3a91-print-root on the resolved
+   message list for the PDF (Pro) flow; attributes are removed on afterprint, so Ctrl+P
+   without our button prints natively — we never interfere. Visibility, not display:
+   no list reflow. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  html[lech3a91-print] body * {
+    visibility: hidden !important;
+  }
+  html[lech3a91-print] [data-lech3a91-print-root],
+  html[lech3a91-print] [data-lech3a91-print-root] * {
+    visibility: visible !important;
+  }
+  html[lech3a91-print] [data-lech3a91-print-root] {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}

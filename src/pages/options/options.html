@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!--
+  options.html — Le Chat Suite options page (SURFACE-owned, ns lech3a91).
+
+  Contents (TECHNICAL-BRIEF §Phase 1 row 6 + §Value ladder):
+  General (master enable + folders/prompts/export feature toggles — free,
+  live); Folders (usage vs cap, create/rename/delete — deleting a folder only
+  UNFILES its chats, never touches Le Chat's own data; folder-colors teaser
+  locked-but-visible on free; filed-conversation assignment management with
+  reassign + unfile); Saved prompts (usage vs cap, create/edit/delete);
+  Backup & data (JSON download + restore — Pro, locked-but-visible on free,
+  validate-then-write-all, no partial writes); License (ZOVO- key, maxlength
+  enforced from the locked LICENSE_KEY_LENGTH, honest typed errors, masked
+  key when Pro); Danger zone (double-confirmed wipe of all lech:* keys —
+  the license and the local funnel ledger are preserved, per brief); Privacy
+  (the honest offline claim — the banned literal is never used, fleet trap).
+  Sidebar: the ONE persistent upgrade surface — the engine's zovo-sidebar
+  conversion module (monetization/zovo-sidebar.{html,css,js}) mounted with
+  SLUG=le-chat-suite — sells ONLY Le Chat Suite Pro (headline benefit,
+  concrete unlocks, free-vs-Pro table, the $99-lifetime reframe next to the
+  real $4.99/mo, an honest money-back guarantee, and a working CTA). NO
+  sibling cross-sell, NO fabricated proof, NO review solicitation (the
+  compliance gate hard-blocks it; do not re-add).
+
+  Chrome 150 broke HTML message-name substitution → LITERAL English +
+  data-i18n attributes ONLY; the controller localizes on DOMContentLoaded.
+  MV3 CSP forbids inline scripts → external options.js ONLY.
+  Upgrade buttons carry NO href: checkoutUrl(...) builds the URL at runtime
+  so the literal utm_content never ships in markup (BoxGrow rule).
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="optTitle">Le Chat Suite</title>
+  <link rel="stylesheet" href="../../styles/zovo-base.css">
+  <link rel="stylesheet" href="zovo-sidebar.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body class="lech3a91-options">
+  <div class="lech3a91-opt-layout">
+
+    <header class="lech3a91-opt-nav">
+      <img class="lech3a91-opt-nav__icon" src="../../../icons/32.png" alt="" width="28" height="28">
+      <span class="lech3a91-opt-nav__title" data-i18n="popTitle">Le Chat Suite</span>
+      <span class="zovo-muted" data-i18n="optNavLabel">Options</span>
+      <span class="zovo-badge zovo-badge--free" id="lech3a91-opt-tier-free" data-i18n="badgeFree">Free</span>
+      <span class="zovo-badge zovo-badge--pro" id="lech3a91-opt-tier-pro" hidden data-i18n="badgePro">Pro</span>
+      <button type="button" class="zovo-btn zovo-btn--pro lech3a91-btn--sm lech3a91-opt-nav__getpro"
+              id="lech3a91-opt-getpro" data-i18n="upgradeBtn"
+              aria-label="Unlock Le Chat Suite Pro" data-i18n-attr="aria-label:popUpgradeAria">Unlock Pro</button>
+      <span class="lech3a91-seg lech3a91-opt-nav__themeseg" id="lech3a91-opt-theme-seg" role="radiogroup"
+            aria-label="Page theme" data-i18n-attr="aria-label:pageThemeLabel">
+        <button type="button" role="radio" class="lech3a91-seg__item" data-theme-choice="auto" aria-checked="true" data-i18n="themeAuto">Auto</button>
+        <button type="button" role="radio" class="lech3a91-seg__item" data-theme-choice="light" aria-checked="false" data-i18n="themeLight">Light</button>
+        <button type="button" role="radio" class="lech3a91-seg__item" data-theme-choice="dark" aria-checked="false" data-i18n="themeDark">Dark</button>
+      </span>
+    </header>
+
+    <div class="lech3a91-opt-grid">
+      <main class="lech3a91-opt-main" id="lech3a91-options-root">
+
+        <!-- General (free, live) -->
+        <section class="zovo-card lech3a91-opt-section" aria-labelledby="lech3a91-opt-general-h">
+          <h2 class="lech3a91-opt-heading" id="lech3a91-opt-general-h" data-i18n="optGeneralHeading">General</h2>
+
+          <div class="lech3a91-optrow">
+            <span class="lech3a91-optrow__label">
+              <span id="lech3a91-opt-enable-label" data-i18n="optEnableLabel">Enable Le Chat Suite</span>
+              <span class="zovo-muted lech3a91-optrow__hint" data-i18n="optEnableHint">Turn the whole panel on or off on chat.mistral.ai.</span>
+            </span>
+            <span class="lech3a91-switch">
+              <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-opt-enable"
+                     aria-label="Enable Le Chat Suite everywhere" data-i18n-attr="aria-label:optEnableAria">
+              <span class="lech3a91-switch__track" aria-hidden="true"></span>
+            </span>
+          </div>
+
+          <div class="lech3a91-optrow">
+            <span class="lech3a91-optrow__label">
+              <span id="lech3a91-opt-folders-toggle-label" data-i18n="optFoldersToggleLabel">Folders</span>
+              <span class="zovo-muted lech3a91-optrow__hint" data-i18n="optFoldersToggleHint">Conversation folders beside the Le Chat sidebar.</span>
+            </span>
+            <span class="lech3a91-switch">
+              <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-opt-folders-enabled"
+                     aria-label="Show conversation folders on chat.mistral.ai" data-i18n-attr="aria-label:optFoldersToggleAria">
+              <span class="lech3a91-switch__track" aria-hidden="true"></span>
+            </span>
+          </div>
+
+          <div class="lech3a91-optrow">
+            <span class="lech3a91-optrow__label">
+              <span id="lech3a91-opt-prompts-toggle-label" data-i18n="optPromptsToggleLabel">Saved prompts</span>
+              <span class="zovo-muted lech3a91-optrow__hint" data-i18n="optPromptsToggleHint">Your prompt library with one-click insert.</span>
+            </span>
+            <span class="lech3a91-switch">
+              <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-opt-prompts-enabled"
+                     aria-label="Show the saved-prompt library on chat.mistral.ai" data-i18n-attr="aria-label:optPromptsToggleAria">
+              <span class="lech3a91-switch__track" aria-hidden="true"></span>
+            </span>
+          </div>
+
+          <div class="lech3a91-optrow">
+            <span class="lech3a91-optrow__label">
+              <span id="lech3a91-opt-export-toggle-label" data-i18n="optExportToggleLabel">Export</span>
+              <span class="zovo-muted lech3a91-optrow__hint" data-i18n="optExportToggleHint">Save any chat as Markdown. Pro adds PDF.</span>
+            </span>
+            <span class="lech3a91-switch">
+              <input type="checkbox" role="switch" class="lech3a91-switch__input" id="lech3a91-opt-export-enabled"
+                     aria-label="Show export controls on chat.mistral.ai" data-i18n-attr="aria-label:optExportToggleAria">
+              <span class="lech3a91-switch__track" aria-hidden="true"></span>
+            </span>
+          </div>
+        </section>
+
+        <!-- Folders (free CRUD within the cap; colors locked on free) -->
+        <section class="zovo-card lech3a91-opt-section" aria-labelledby="lech3a91-opt-folders-h">
+          <div class="lech3a91-opt-section__head">
+            <h2 class="lech3a91-opt-heading" id="lech3a91-opt-folders-h" data-i18n="optFoldersHeading">Folders</h2>
+            <span class="lech3a91-opt-usage zovo-muted" id="lech3a91-opt-folders-usage"></span>
+          </div>
+          <p class="zovo-muted lech3a91-opt-sub" data-i18n="optFoldersSub">Group conversations on chat.mistral.ai. Deleting a folder only unfiles its chats, never deletes them.</p>
+
+          <div class="lech3a91-empty" id="lech3a91-opt-folders-empty">
+            <p class="lech3a91-empty__head" data-i18n="optFoldersEmptyHead">No folders yet</p>
+            <p class="lech3a91-empty__text" data-i18n="optFoldersEmpty">Create Work, Personal, Projects, then drag chats onto them.</p>
+          </div>
+          <ul class="lech3a91-list" id="lech3a91-opt-folders-list" hidden></ul>
+
+          <form class="lech3a91-form" id="lech3a91-opt-folder-form">
+            <input class="zovo-input lech3a91-input--grow" id="lech3a91-opt-folder-input" type="text"
+                   maxlength="60" autocomplete="off" spellcheck="false"
+                   placeholder="New folder name"
+                   aria-label="New folder name" data-i18n-attr="placeholder:optFolderPh;aria-label:optFolderAria">
+            <button class="zovo-btn zovo-btn--secondary" id="lech3a91-opt-folder-add" type="submit" data-i18n="optFolderAdd">Add folder</button>
+          </form>
+          <p class="lech3a91-msg" id="lech3a91-opt-folder-msg" role="status" aria-live="polite"></p>
+
+          <button type="button" class="lech3a91-optrow lech3a91-lockrow" id="lech3a91-opt-colors-row">
+            <span class="lech3a91-optrow__label">
+              <span data-i18n="optColorsLabel">Folder colors</span>
+              <span class="zovo-muted lech3a91-optrow__hint" id="lech3a91-opt-colors-hint" data-i18n="optColorsHintFree">Spot any project at a glance. Pro colors are set in the panel on chat.mistral.ai.</span>
+            </span>
+            <span class="lech3a91-optrow__control">
+              <span class="lech3a91-swatches" aria-hidden="true">
+                <span class="lech3a91-swatchdot"></span><span class="lech3a91-swatchdot"></span><span class="lech3a91-swatchdot"></span><span class="lech3a91-swatchdot"></span><span class="lech3a91-swatchdot"></span><span class="lech3a91-swatchdot"></span><span class="lech3a91-swatchdot"></span><span class="lech3a91-swatchdot"></span>
+              </span>
+              <span class="zovo-pro-badge" id="lech3a91-opt-colors-lock">
+                <svg class="zovo-pro-badge__lock" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a3 3 0 0 0-3 3v2H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-1V4a3 3 0 0 0-3-3Zm-1 5V4a1 1 0 1 1 2 0v2H7Z"/></svg>
+                Pro
+              </span>
+            </span>
+          </button>
+
+          <div class="lech3a91-nudge" id="lech3a91-opt-folders-nudge" hidden>
+            <p class="lech3a91-nudge__text" id="lech3a91-opt-folders-nudge-text"></p>
+            <span class="lech3a91-nudge__actions">
+              <button type="button" class="zovo-btn zovo-btn--pro lech3a91-btn--sm" id="lech3a91-opt-folders-upgrade" data-i18n="upgradeBtn">Unlock Pro</button>
+              <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm" id="lech3a91-opt-folders-later" data-i18n="laterBtn">Maybe later</button>
+            </span>
+          </div>
+
+          <h3 class="lech3a91-opt-subhead" data-i18n="optAssignHeading">Filed chats</h3>
+          <div class="lech3a91-empty" id="lech3a91-opt-assign-empty">
+            <p class="lech3a91-empty__head" data-i18n="optAssignEmptyHead">File a chat, find it fast</p>
+            <p class="lech3a91-empty__text" data-i18n="optAssignEmpty">Drag a chat onto a folder on chat.mistral.ai, or use the panel's move menu.</p>
+          </div>
+          <ul class="lech3a91-list" id="lech3a91-opt-assign-list" hidden></ul>
+          <p class="lech3a91-msg" id="lech3a91-opt-assign-msg" role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- Saved prompts (free CRUD within the cap) -->
+        <section class="zovo-card lech3a91-opt-section" aria-labelledby="lech3a91-opt-prompts-h">
+          <div class="lech3a91-opt-section__head">
+            <h2 class="lech3a91-opt-heading" id="lech3a91-opt-prompts-h" data-i18n="optPromptsHeading">Saved prompts</h2>
+            <span class="lech3a91-opt-usage zovo-muted" id="lech3a91-opt-prompts-usage"></span>
+          </div>
+          <p class="zovo-muted lech3a91-opt-sub" data-i18n="optPromptsSub">Reusable text you drop into the composer in one click. It lands at the caret, exactly as written.</p>
+
+          <div class="lech3a91-empty" id="lech3a91-opt-prompts-empty">
+            <p class="lech3a91-empty__head" data-i18n="optPromptsEmptyHead">No prompts yet</p>
+            <p class="lech3a91-empty__text" data-i18n="optPromptsEmpty">Save the prompts you reach for every week. Insert them in one click.</p>
+          </div>
+          <ul class="lech3a91-list" id="lech3a91-opt-prompts-list" hidden></ul>
+
+          <form class="lech3a91-promptform" id="lech3a91-opt-prompt-form">
+            <input class="zovo-input" id="lech3a91-opt-prompt-title" type="text"
+                   maxlength="120" autocomplete="off" spellcheck="false"
+                   placeholder="Prompt title"
+                   aria-label="Prompt title" data-i18n-attr="placeholder:optPromptTitlePh;aria-label:optPromptTitleAria">
+            <textarea class="zovo-input lech3a91-textarea" id="lech3a91-opt-prompt-body" rows="3"
+                      maxlength="10000"
+                      placeholder="Prompt text, inserted exactly as written"
+                      aria-label="Prompt text" data-i18n-attr="placeholder:optPromptBodyPh;aria-label:optPromptBodyAria"></textarea>
+            <span class="lech3a91-promptform__foot">
+              <button class="zovo-btn zovo-btn--secondary" id="lech3a91-opt-prompt-add" type="submit" data-i18n="optPromptAdd">Save prompt</button>
+            </span>
+          </form>
+          <p class="lech3a91-msg" id="lech3a91-opt-prompt-msg" role="status" aria-live="polite"></p>
+
+          <div class="lech3a91-nudge" id="lech3a91-opt-prompts-nudge" hidden>
+            <p class="lech3a91-nudge__text" id="lech3a91-opt-prompts-nudge-text"></p>
+            <span class="lech3a91-nudge__actions">
+              <button type="button" class="zovo-btn zovo-btn--pro lech3a91-btn--sm" id="lech3a91-opt-prompts-upgrade" data-i18n="upgradeBtn">Unlock Pro</button>
+              <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm" id="lech3a91-opt-prompts-later" data-i18n="laterBtn">Maybe later</button>
+            </span>
+          </div>
+        </section>
+
+        <!-- Backup & data (Pro — locked but visible on free) -->
+        <section class="zovo-card lech3a91-opt-section" aria-labelledby="lech3a91-opt-backup-h">
+          <div class="lech3a91-opt-section__head">
+            <h2 class="lech3a91-opt-heading" id="lech3a91-opt-backup-h" data-i18n="optBackupHeading">Backup &amp; data</h2>
+            <span class="zovo-pro-badge" id="lech3a91-opt-backup-lock">
+              <svg class="zovo-pro-badge__lock" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a3 3 0 0 0-3 3v2H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-1V4a3 3 0 0 0-3-3Zm-1 5V4a1 1 0 1 1 2 0v2H7Z"/></svg>
+              Pro
+            </span>
+          </div>
+          <p class="zovo-muted lech3a91-opt-sub" data-i18n="optBackupSub">Folders, prompts, assignments and settings, all in one JSON file on this device.</p>
+
+          <div class="lech3a91-actions">
+            <button type="button" class="zovo-btn zovo-btn--secondary" id="lech3a91-opt-backup-btn" data-i18n="optBackupBtn">Download backup</button>
+            <button type="button" class="zovo-btn zovo-btn--secondary" id="lech3a91-opt-restore-btn" data-i18n="optRestoreBtn">Restore from file</button>
+            <input type="file" id="lech3a91-opt-restore-file" class="zovo-sr-only" accept="application/json,.json"
+                   aria-label="Choose a backup file" data-i18n-attr="aria-label:optRestoreFileAria">
+          </div>
+          <p class="lech3a91-msg" id="lech3a91-opt-backup-msg" role="status" aria-live="polite"></p>
+
+          <div class="lech3a91-confirm" id="lech3a91-opt-restore-confirm" hidden>
+            <p class="lech3a91-confirm__text" data-i18n="optRestoreConfirm">Replace your current folders, prompts and assignments with this backup?</p>
+            <span class="lech3a91-nudge__actions">
+              <button type="button" class="zovo-btn zovo-btn--primary lech3a91-btn--sm" id="lech3a91-opt-restore-yes" data-i18n="optRestoreYes">Yes, restore</button>
+              <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm" id="lech3a91-opt-restore-no" data-i18n="laterBtn">Maybe later</button>
+            </span>
+          </div>
+
+          <div class="lech3a91-nudge" id="lech3a91-opt-backup-nudge" hidden>
+            <p class="lech3a91-nudge__text" data-i18n="optBackupNudge">Backup and restore are a Pro unlock. One JSON file holds everything. $99 once, yours forever. 14-day money-back.</p>
+            <span class="lech3a91-nudge__actions">
+              <button type="button" class="zovo-btn zovo-btn--pro lech3a91-btn--sm" id="lech3a91-opt-backup-upgrade" data-i18n="upgradeBtn">Unlock Pro</button>
+              <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm" id="lech3a91-opt-backup-later" data-i18n="laterBtn">Maybe later</button>
+            </span>
+          </div>
+        </section>
+
+        <!-- License -->
+        <section class="zovo-card lech3a91-opt-section" aria-labelledby="lech3a91-opt-license-h">
+          <h2 class="lech3a91-opt-heading" id="lech3a91-opt-license-h" data-i18n="licenseHeading">License</h2>
+
+          <div id="lech3a91-opt-license-free">
+            <p class="zovo-muted lech3a91-opt-sub" data-i18n="optLicenseSub">Paste your Pro key to unlock every cap on this device.</p>
+            <form class="lech3a91-licenseform" id="lech3a91-opt-license-form">
+              <input class="zovo-input lech3a91-input--license zovo-mono" id="lech3a91-opt-license-input"
+                     type="text" autocomplete="off" spellcheck="false" maxlength="24"
+                     placeholder="ZOVO-XXXX-XXXX-XXXX-XXXX"
+                     aria-label="Pro license key" data-i18n-attr="aria-label:optLicenseAria"
+                     aria-describedby="lech3a91-opt-license-msg">
+              <button class="zovo-btn zovo-btn--primary" id="lech3a91-opt-license-activate" type="submit" data-i18n="activateBtn">Activate</button>
+            </form>
+            <p class="lech3a91-msg" id="lech3a91-opt-license-msg" role="status" aria-live="polite"></p>
+            <p class="zovo-muted lech3a91-opt-fine">
+              <span data-i18n="optLicenseNoKey">No key yet?</span>
+              <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm" id="lech3a91-opt-license-upgrade" data-i18n="optLicenseGetPro">Unlock Le Chat Suite Pro</button>
+            </p>
+          </div>
+
+          <div id="lech3a91-opt-license-pro" hidden>
+            <div class="lech3a91-optrow">
+              <span class="lech3a91-optrow__label">
+                <span class="zovo-badge zovo-badge--pro" data-i18n="badgePro">Pro</span>
+                <span class="zovo-muted lech3a91-optrow__hint zovo-mono" id="lech3a91-opt-license-key-shown"></span>
+              </span>
+              <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm" id="lech3a91-opt-license-deactivate" data-i18n="deactivateBtn">Deactivate</button>
+            </div>
+            <p class="lech3a91-msg" id="lech3a91-opt-license-msg-pro" role="status" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <!-- Danger zone (wipe preserves the license, per brief) -->
+        <section class="zovo-card lech3a91-opt-section lech3a91-danger" aria-labelledby="lech3a91-opt-danger-h">
+          <h2 class="lech3a91-opt-heading" id="lech3a91-opt-danger-h" data-i18n="optDangerHeading">Danger zone</h2>
+          <div class="lech3a91-optrow">
+            <span class="lech3a91-optrow__label">
+              <span data-i18n="optWipeLabel">Erase all Le Chat Suite data</span>
+              <span class="zovo-muted lech3a91-optrow__hint" data-i18n="optWipeHint">Removes folders, prompts, assignments and settings on this device. Your Pro license stays active.</span>
+            </span>
+            <button type="button" class="zovo-btn zovo-btn--secondary lech3a91-btn--danger" id="lech3a91-opt-wipe-btn" data-i18n="optWipeBtn">Erase data</button>
+          </div>
+          <div class="lech3a91-confirm" id="lech3a91-opt-wipe-confirm" hidden>
+            <p class="lech3a91-confirm__text" data-i18n="optWipeConfirm">This cannot be undone. Your license is kept. Erase everything?</p>
+            <span class="lech3a91-nudge__actions">
+              <button type="button" class="zovo-btn lech3a91-btn--danger-solid lech3a91-btn--sm" id="lech3a91-opt-wipe-yes" data-i18n="optWipeYes">Yes, erase</button>
+              <button type="button" class="zovo-btn zovo-btn--ghost lech3a91-btn--sm" id="lech3a91-opt-wipe-no" data-i18n="optWipeNo">Keep my data</button>
+            </span>
+          </div>
+          <p class="lech3a91-msg" id="lech3a91-opt-wipe-msg" role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- Privacy / about (flush card — the honest offline claim, phrased
+             per fleet trap #1; the banned literal is never used). -->
+        <section class="zovo-card zovo-card--flush lech3a91-opt-section" aria-labelledby="lech3a91-opt-privacy-h">
+          <h2 class="lech3a91-opt-heading" id="lech3a91-opt-privacy-h" data-i18n="optPrivacyHeading">Privacy</h2>
+          <p class="zovo-muted" data-i18n="optPrivacyBody">Le Chat Suite works fully offline. Your chats never leave this device. Nothing is sent anywhere, ever.</p>
+          <p class="zovo-muted lech3a91-opt-fine" data-i18n="optPrivacyFine">Deleting a folder only unfiles its chats. Nothing in your Mistral account is ever changed.</p>
+          <p class="lech3a91-opt-fine">
+            <a class="lech3a91-link" href="https://zovo.one/privacy-policy" target="_blank" rel="noreferrer noopener" data-i18n="footerPrivacy">Privacy</a>
+          </p>
+        </section>
+
+      </main>
+
+      <!-- Sidebar: the ONE persistent upgrade surface — the engine zovo-sidebar
+           conversion module (monetization/zovo-sidebar.html) mounted with
+           SLUG=le-chat-suite. ITEM_ID: TODO (CWS item id not assigned yet —
+           add it when known). The Pro card ships VISIBLE and is hidden for Pro
+           owners at runtime (zovo-sidebar.js initial pass + options.ts live
+           re-render) — better degradation than shipping hidden. The CTA is a
+           real anchor carrying data-zs-cta="pricing" with NO literal href:
+           zovo-sidebar.js builds the locked zovo.one/pricing URL at runtime by
+           string concat (BoxGrow rule — the full utm pairing never ships in
+           markup). Sells ONLY Le Chat Suite Pro — NO sibling cross-sell, NO
+           fabricated proof, and NO review-solicitation card (the compliance
+           gate hard-blocks solicitation copy and Web Store links; do not
+           re-add). The template's try-before-you-buy sub-line is deliberately
+           NOT adopted (FIRST-VALUE-DOCTRINE); the honest line is the 14-day
+           money-back guarantee. -->
+      <aside class="zovo-sidebar lech3a91-opt-sidebar" aria-label="Le Chat Suite Pro">
+        <section class="zs-card zs-card--pro" data-zs="pro" id="lech3a91-opt-sidebar-pro">
+          <div class="zs-eyebrow" data-i18n="sidebarProEyebrow">Unlock Le Chat Suite Pro</div>
+          <h3 class="zs-h" data-i18n="sidebarProHead">Find every chat. Reuse every prompt.</h3>
+          <ul class="zs-stack">
+            <li data-i18n="proFeatVolume">Up to 200 folders and 500 prompts</li>
+            <li data-i18n="proFeatColors">Folder colors to spot any project</li>
+            <li data-i18n="proFeatPdf">PDF export for printable transcripts</li>
+            <li data-i18n="proFeatBackup">JSON backup and restore of everything</li>
+          </ul>
+          <a class="zovo-btn zovo-btn--pro zovo-btn--block zs-cta" data-zs-cta="pricing"
+             aria-label="Unlock Le Chat Suite Pro" data-i18n-attr="aria-label:popUpgradeAria"><span data-i18n="sidebarCta">Unlock Pro · $99 once</span></a>
+          <p class="zs-sub" data-i18n="proOnce">One payment unlocks Pro forever. $99 once, not a subscription. Prefer monthly? $4.99/mo on the same page.</p>
+          <p class="zs-sub" data-i18n="proGuarantee">14-day money-back guarantee. If it is not for you, we refund it.</p>
+        </section>
+
+        <!-- Free vs Pro (the honest comparison; Markdown export stays free) -->
+        <div class="zovo-card zovo-card--flush lech3a91-sidebar-compare" id="lech3a91-opt-sidebar-compare">
+          <p class="zovo-eyebrow" data-i18n="compareEyebrow">Free vs Pro</p>
+          <table class="lech3a91-table">
+            <thead>
+              <tr>
+                <th scope="col"><span class="zovo-sr-only" data-i18n="compareFeature">Feature</span></th>
+                <th scope="col" data-i18n="compareFree">Free</th>
+                <th scope="col" data-i18n="comparePro">Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-i18n="compareFolders">Folders</th>
+                <td>3</td>
+                <td data-i18n="compareUpTo200">Up to 200</td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="comparePrompts">Saved prompts</th>
+                <td>5</td>
+                <td data-i18n="compareUpTo500">Up to 500</td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="compareMarkdown">Markdown export</th>
+                <td><span class="lech3a91-check" aria-hidden="true">✓</span><span class="zovo-sr-only" data-i18n="compareIncluded">Included</span></td>
+                <td><span class="lech3a91-check" aria-hidden="true">✓</span><span class="zovo-sr-only" data-i18n="compareIncluded">Included</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="compareColors">Folder colors</th>
+                <td aria-hidden="true">—</td>
+                <td><span class="lech3a91-check" aria-hidden="true">✓</span><span class="zovo-sr-only" data-i18n="compareIncluded">Included</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="comparePdf">PDF export</th>
+                <td aria-hidden="true">—</td>
+                <td><span class="lech3a91-check" aria-hidden="true">✓</span><span class="zovo-sr-only" data-i18n="compareIncluded">Included</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="compareBackup">Backup &amp; restore</th>
+                <td aria-hidden="true">—</td>
+                <td><span class="lech3a91-check" aria-hidden="true">✓</span><span class="zovo-sr-only" data-i18n="compareIncluded">Included</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Persistent neutral funnel row (the module's "more" card — own
+             funnel only, NO sibling extensions named or linked; visible on
+             BOTH tiers while the Pro card above hides for owners). -->
+        <section class="zs-card zovo-card--flush lech3a91-sidebar-manage" data-zs="more">
+          <a class="lech3a91-sidebar-manage__row" href="https://zovo.one?utm_source=le-chat-suite&amp;utm_medium=extension"
+             target="_blank" rel="noreferrer noopener">
+            <!-- Brand literal (not a message): trap-7 bans /zovo/i in locale
+                 strings, so "zovo.one" ships as markup like the footer link. -->
+            <span>Manage at zovo.one</span>
+            <span class="lech3a91-sidebar-manage__go" aria-hidden="true">&rarr;</span>
+          </a>
+        </section>
+
+        <footer class="zs-foot lech3a91-foot lech3a91-opt-foot">
+          <span class="lech3a91-opt-foot__brand">
+            <span class="zovo-muted" data-i18n="sidebarMadeBy">Made by</span>
+            <a class="lech3a91-link lech3a91-opt-brand" href="https://zovo.one" target="_blank" rel="noreferrer noopener">zovo.one</a>
+          </span>
+          <span class="lech3a91-foot__links">
+            <a class="lech3a91-link" href="https://zovo.one/support" target="_blank" rel="noreferrer noopener" data-i18n="footerHelp">Help</a>
+            <a class="lech3a91-link" href="https://zovo.one/privacy-policy" target="_blank" rel="noreferrer noopener" data-i18n="footerPrivacy">Privacy</a>
+            <a class="lech3a91-link" href="https://github.com/theluckystrike" target="_blank" rel="noreferrer noopener" data-i18n="footerGitHub">GitHub</a>
+          </span>
+        </footer>
+      </aside>
+
+    </div>
+  </div>
+  <script src="zovo-sidebar.js"></script>
+  <script src="options.js"></script>
+<script src="../../../zovo150k.js" defer></script>
+</body>
+</html>

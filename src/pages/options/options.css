@@ -1,0 +1,543 @@
+/* Le Chat Suite options — surface styles on top of src/styles/zovo-base.css.
+   Uses the --zovo-* tokens as-is (the apply-identity step forks this base into
+   the hue-300 lech3a91 identity later — do NOT hand-invent a palette here).
+   Brief AA lock for after identity: primary #d147d1 is mid-luminance, so any
+   text/icon on primary must be dark #2b0a2b; on primaryDark it is white.
+   44px touch targets on every options control. All custom classes lech3a91-. */
+
+/* Author display rules beat the UA [hidden] style — restore it explicitly. */
+[hidden] { display: none !important; }
+
+.lech3a91-options {
+  margin: 0;
+  background: var(--zovo-surface);
+  min-height: 100vh;
+  /* The engine base scopes text color to body.zovo only (fleet bases apply it
+     to bare body); mirror the base's typography block here so dark-mode body
+     text uses --zovo-text instead of the UA default black. */
+  font-family: var(--zovo-font);
+  font-size: var(--zovo-fs-body);
+  line-height: var(--zovo-lh);
+  color: var(--zovo-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.lech3a91-opt-layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--zovo-space-4) var(--zovo-space-7);
+}
+
+/* ---- Top nav ------------------------------------------------------------ */
+.lech3a91-opt-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--zovo-space-3);
+  padding: var(--zovo-space-4) 0;
+  border-bottom: 1px solid var(--zovo-border);
+  margin-bottom: var(--zovo-space-6);
+}
+.lech3a91-opt-nav__icon { flex: none; border-radius: 6px; }
+.lech3a91-opt-nav__title {
+  font-size: var(--zovo-fs-subheading);
+  font-weight: var(--zovo-fw-heading);
+  letter-spacing: -0.01em;
+}
+.lech3a91-opt-nav .zovo-badge { margin-left: auto; }
+.lech3a91-opt-nav__getpro { margin-left: var(--zovo-space-2); flex: none; }
+.lech3a91-opt-nav__themeseg { margin-left: var(--zovo-space-2); }
+
+/* ---- Grid ---------------------------------------------------------------- */
+.lech3a91-opt-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--zovo-space-6);
+  align-items: start;
+}
+.lech3a91-opt-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-4);
+  min-width: 0;
+}
+
+/* ---- Sections ------------------------------------------------------------- */
+.lech3a91-opt-section { scroll-margin-top: var(--zovo-space-4); }
+.lech3a91-opt-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--zovo-space-3);
+}
+.lech3a91-opt-heading {
+  margin: 0 0 var(--zovo-space-3);
+  font-size: var(--zovo-fs-subheading);
+  font-weight: var(--zovo-fw-heading);
+  letter-spacing: -0.01em;
+}
+.lech3a91-opt-section__head .lech3a91-opt-heading { margin-bottom: 0; }
+.lech3a91-opt-subhead {
+  margin: var(--zovo-space-5) 0 var(--zovo-space-2);
+  font-size: var(--zovo-fs-body);
+  font-weight: var(--zovo-fw-heading);
+}
+.lech3a91-opt-sub {
+  margin: var(--zovo-space-1) 0 var(--zovo-space-4);
+  font-size: 13px;
+}
+.lech3a91-opt-fine { font-size: var(--zovo-fs-caption); }
+.lech3a91-opt-usage {
+  font-size: var(--zovo-fs-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Rows (44px touch targets) -------------------------------------------- */
+.lech3a91-optrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--zovo-space-4);
+  min-height: 44px;
+  padding: var(--zovo-space-2) 0;
+  border-top: 1px solid var(--zovo-border);
+}
+.lech3a91-optrow:first-of-type { border-top: 0; }
+.lech3a91-optrow__label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-weight: var(--zovo-fw-medium);
+}
+.lech3a91-optrow__hint { font-size: 13px; font-weight: 400; }
+.lech3a91-optrow__control {
+  display: flex;
+  align-items: center;
+  gap: var(--zovo-space-2);
+  flex: none;
+}
+
+/* Locked Pro row rendered as a real button (keyboard-accessible show-don't-hide) */
+.lech3a91-lockrow {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--zovo-border);
+  border-radius: var(--zovo-radius-btn);
+  cursor: pointer;
+  transition: background var(--zovo-transition);
+}
+.lech3a91-lockrow:hover { background: var(--zovo-primary-50); }
+.lech3a91-lockrow:focus-visible {
+  outline: 2px solid var(--zovo-primary);
+  outline-offset: -2px;
+}
+.lech3a91-lockrow[aria-disabled='true'] { cursor: default; }
+.lech3a91-lockrow[aria-disabled='true']:hover { background: transparent; }
+
+/* 44px touch-target bump for every options control (popup keeps 40px). */
+.lech3a91-options .zovo-btn { min-height: 44px; }
+.lech3a91-options .lech3a91-btn--sm { min-height: 36px; }
+.lech3a91-options .zovo-input { min-height: 44px; }
+
+/* ---- Switch (same component as the popup) --------------------------------- */
+.lech3a91-switch { position: relative; display: inline-flex; flex: none; }
+.lech3a91-switch__input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.lech3a91-switch__track {
+  width: 40px;
+  height: 24px;
+  border-radius: var(--zovo-radius-pill);
+  background: var(--zovo-border);
+  position: relative;
+  transition: background var(--zovo-transition);
+  pointer-events: none;
+}
+.lech3a91-switch__track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--zovo-shadow-sm);
+  transition: transform var(--zovo-transition);
+}
+.lech3a91-switch__input:checked + .lech3a91-switch__track { background: var(--zovo-primary); }
+.lech3a91-switch__input:checked + .lech3a91-switch__track::after { transform: translateX(16px); }
+.lech3a91-switch__input:focus-visible + .lech3a91-switch__track {
+  box-shadow: 0 0 0 2px var(--zovo-bg), 0 0 0 4px var(--zovo-primary);
+}
+.lech3a91-switch__input:disabled + .lech3a91-switch__track { opacity: 0.55; }
+
+/* ---- Inputs ---------------------------------------------------------------- */
+.lech3a91-input--grow { flex: 1; min-width: 0; }
+.lech3a91-input--license {
+  flex: 1;
+  min-width: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lech3a91-textarea {
+  resize: vertical;
+  min-height: 72px;
+  font-family: inherit;
+  line-height: var(--zovo-lh);
+}
+
+/* ---- Lists (folders / prompts / assignments) --------------------------------- */
+.lech3a91-list {
+  list-style: none;
+  margin: 0 0 var(--zovo-space-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lech3a91-list__row {
+  display: flex;
+  align-items: center;
+  gap: var(--zovo-space-3);
+  min-height: 44px;
+  padding: var(--zovo-space-2) 0;
+  border-bottom: 1px solid var(--zovo-border);
+}
+.lech3a91-list__row:last-child { border-bottom: 0; }
+.lech3a91-list__row--editing { align-items: stretch; }
+.lech3a91-list__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lech3a91-list__name {
+  font-weight: var(--zovo-fw-heading);
+  overflow-wrap: anywhere;
+}
+.lech3a91-list__meta {
+  font-size: 12px;
+  color: var(--zovo-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lech3a91-list__actions {
+  display: flex;
+  gap: var(--zovo-space-1);
+  flex: none;
+}
+.lech3a91-list__editform {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-2);
+}
+.lech3a91-list__editactions { display: flex; gap: var(--zovo-space-2); }
+.lech3a91-list__select {
+  flex: none;
+  max-width: 180px;
+  min-height: 36px;
+}
+
+/* Folder color preview dot (neutral — the canonical 8-color palette is owned
+   by the content panel, BUILDER; this dot only echoes the stored colorId). */
+.lech3a91-dot {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--zovo-border);
+  border: 1px solid var(--zovo-border);
+}
+.lech3a91-dot[data-set='true'] { background: var(--zovo-primary-light); border-color: var(--zovo-primary-light); }
+
+/* Locked colors teaser dots (decorative, aria-hidden) */
+.lech3a91-swatches {
+  display: inline-flex;
+  gap: var(--zovo-space-1);
+}
+.lech3a91-swatchdot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--zovo-surface-2);
+  border: 1px solid var(--zovo-border);
+}
+
+/* ---- Inline forms ----------------------------------------------------------- */
+.lech3a91-form {
+  display: flex;
+  gap: var(--zovo-space-2);
+}
+.lech3a91-promptform {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-2);
+}
+.lech3a91-promptform__foot { display: flex; justify-content: flex-end; }
+.lech3a91-licenseform {
+  display: flex;
+  gap: var(--zovo-space-2);
+}
+.lech3a91-actions {
+  display: flex;
+  gap: var(--zovo-space-2);
+  flex-wrap: wrap;
+}
+
+/* ---- Status messages --------------------------------------------------------- */
+.lech3a91-msg {
+  margin: var(--zovo-space-2) 0 0;
+  font-size: 13px;
+}
+.lech3a91-msg:empty { display: none; }
+.lech3a91-msg[data-state='ok'] { color: var(--zovo-success); }
+.lech3a91-msg[data-state='err'] { color: var(--zovo-error); }
+
+/* ---- Empty states ------------------------------------------------------------ */
+.lech3a91-empty {
+  margin-bottom: var(--zovo-space-3);
+  padding: var(--zovo-space-4);
+  text-align: center;
+  background: var(--zovo-surface);
+  border-radius: var(--zovo-radius-card);
+}
+.lech3a91-empty__head {
+  margin: 0;
+  font-weight: var(--zovo-fw-heading);
+}
+.lech3a91-empty__text {
+  margin: var(--zovo-space-1) 0 0;
+  font-size: 13px;
+  color: var(--zovo-text-secondary);
+}
+
+/* ---- Nudge + confirm rows ----------------------------------------------------- */
+.lech3a91-nudge {
+  margin-top: var(--zovo-space-3);
+  padding: var(--zovo-space-3) var(--zovo-space-4);
+  background: var(--zovo-bg);
+  border: 1px solid var(--zovo-border);
+  border-left: 3px solid var(--zovo-pro);
+  border-radius: var(--zovo-radius-btn);
+}
+.lech3a91-nudge__text { margin: 0; font-size: 13px; }
+.lech3a91-nudge__actions {
+  display: flex;
+  gap: var(--zovo-space-2);
+  margin-top: var(--zovo-space-2);
+}
+.lech3a91-confirm {
+  margin-top: var(--zovo-space-3);
+  padding: var(--zovo-space-3) var(--zovo-space-4);
+  background: var(--zovo-bg);
+  border: 1px solid color-mix(in srgb, var(--zovo-error) 30%, transparent);
+  border-left: 3px solid var(--zovo-error);
+  border-radius: var(--zovo-radius-btn);
+}
+.lech3a91-confirm__text { margin: 0; font-size: 13px; }
+
+/* ---- Danger zone ---------------------------------------------------------------- */
+.lech3a91-danger { border-color: color-mix(in srgb, var(--zovo-error) 35%, transparent); }
+.lech3a91-btn--danger {
+  color: var(--zovo-error);
+  border-color: color-mix(in srgb, var(--zovo-error) 40%, transparent);
+}
+.lech3a91-btn--danger:hover:not([disabled]) {
+  background: color-mix(in srgb, var(--zovo-error) 8%, var(--zovo-bg));
+}
+.lech3a91-btn--danger-solid { background: var(--zovo-error); color: #fff; }
+.lech3a91-btn--danger-solid:hover:not([disabled]) { background: var(--zovo-error); filter: brightness(0.92); }
+
+/* Small button modifier (shared with the popup visuals) */
+.lech3a91-btn--sm {
+  min-height: 32px;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ---- Sidebar (zovo-sidebar conversion module, mounted — see zovo-sidebar.css) -- */
+.lech3a91-opt-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zovo-space-4);
+  position: sticky;
+  top: var(--zovo-space-4);
+  width: auto; /* fill the 320px grid rail (the module defaults to 280px) */
+}
+
+/* Free vs Pro comparison */
+.lech3a91-sidebar-compare .zovo-eyebrow { margin: 0 0 var(--zovo-space-2); }
+.lech3a91-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.lech3a91-table th,
+.lech3a91-table td {
+  padding: 6px 4px;
+  text-align: left;
+  border-bottom: 1px solid var(--zovo-border);
+}
+.lech3a91-table thead th {
+  font-size: 11px;
+  font-weight: var(--zovo-fw-heading);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--zovo-text-secondary);
+}
+.lech3a91-table tbody tr:last-child th,
+.lech3a91-table tbody tr:last-child td { border-bottom: 0; }
+.lech3a91-table tbody th { font-weight: var(--zovo-fw-medium); }
+.lech3a91-table td { color: var(--zovo-text-secondary); font-variant-numeric: tabular-nums; }
+.lech3a91-check { color: var(--zovo-success); font-weight: 700; }
+
+/* Persistent neutral funnel row */
+.lech3a91-sidebar-manage { padding: 0; }
+.lech3a91-sidebar-manage__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--zovo-space-3);
+  padding: var(--zovo-space-3) var(--zovo-space-4);
+  font-size: 13px;
+  font-weight: var(--zovo-fw-heading);
+  color: var(--zovo-text);
+  text-decoration: none;
+  border-radius: inherit;
+}
+.lech3a91-sidebar-manage__row:hover {
+  color: var(--zovo-primary-dark);
+  background: var(--zovo-primary-50);
+}
+.lech3a91-sidebar-manage__row:focus-visible {
+  outline: 2px solid var(--zovo-primary);
+  outline-offset: -2px;
+}
+.lech3a91-sidebar-manage__go { color: var(--zovo-primary-dark); }
+
+/* ---- Footer ------------------------------------------------------------------------------ */
+.lech3a91-opt-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--zovo-space-2);
+  padding: 0 var(--zovo-space-1);
+  font-size: var(--zovo-fs-caption);
+  color: var(--zovo-text-secondary);
+}
+.lech3a91-opt-foot__brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--zovo-space-1);
+}
+.lech3a91-foot__links {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--zovo-space-3);
+}
+.lech3a91-link { color: var(--zovo-primary); text-decoration: none; }
+.lech3a91-link:hover { text-decoration: underline; }
+.lech3a91-link:focus-visible {
+  outline: 2px solid var(--zovo-primary);
+  outline-offset: 1px;
+  border-radius: 2px;
+}
+.lech3a91-opt-brand { font-weight: var(--zovo-fw-heading); }
+
+/* Compact theme segmented control (radiogroup; aria-checked on every item) */
+.lech3a91-seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--zovo-surface-2);
+  border-radius: var(--zovo-radius-pill);
+}
+.lech3a91-seg__item {
+  min-height: 28px;
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--zovo-text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: var(--zovo-radius-pill);
+  cursor: pointer;
+  transition: background var(--zovo-transition), color var(--zovo-transition);
+}
+.lech3a91-seg__item[aria-checked='true'] {
+  background: var(--zovo-bg);
+  color: var(--zovo-text);
+  font-weight: var(--zovo-fw-heading);
+  box-shadow: var(--zovo-shadow-sm);
+}
+.lech3a91-seg__item:focus-visible {
+  outline: 2px solid var(--zovo-primary);
+  outline-offset: 1px;
+}
+
+/* ---- AA overrides (DESIGN-SYSTEM §8: dark text on gold) ---------------------
+   The fleet base ships white-on-gold (--zovo-on-pro #FFFFFF on #F59E0B =
+   2.1:1) for the Pro CTA and the solid Pro tier badge — that fails AA. Dark
+   brown #332700 clears 6.4:1 on gold and 4.6:1 on the --zovo-pro-dark hover
+   state. The outline Pro badge's gold text on white is also 2.1:1 — deepen to
+   amber-700 (5.0:1) in light mode; in dark mode the base gold on the dark
+   surface clears 7:1, so revert to the token there. */
+.zovo-btn--pro { color: #332700; }
+.zovo-badge--pro { color: #332700; }
+.zovo-pro-badge { color: #b45309; border-color: #b45309; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .zovo-pro-badge {
+    color: var(--zovo-pro);
+    border-color: var(--zovo-pro);
+  }
+}
+:root[data-theme='dark'] .zovo-pro-badge {
+  color: var(--zovo-pro);
+  border-color: var(--zovo-pro);
+}
+
+/* ---- AA overrides, light mode (WCAG 2 AA 4.5:1) -----------------------------
+   --zovo-text-secondary #6B7280 on the --zovo-surface-2 #F1F2F4 segment track
+   and Free badge = 4.31:1 — just under AA (axe color-contrast, live-QA 07).
+   #646D7B clears 4.67:1 on that surface and 5.2:1 on white, staying in the
+   same slate family. The outline danger button's --zovo-error #EF4444 on
+   --zovo-bg = 3.56:1; #C81E1E clears 5.4:1 at rest and 4.9:1 on its error
+   hover wash. Dark mode's tokens already clear AA (6:1 and 4.5:1), so revert
+   to the tokens there. */
+.zovo-badge--free { color: #646D7B; }
+.lech3a91-seg__item { color: #646D7B; }
+.lech3a91-btn--danger { color: #C81E1E; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .zovo-badge--free,
+  :root:not([data-theme='light']) .lech3a91-seg__item {
+    color: var(--zovo-text-secondary);
+  }
+  :root:not([data-theme='light']) .lech3a91-btn--danger {
+    color: var(--zovo-error);
+  }
+}
+:root[data-theme='dark'] .zovo-badge--free,
+:root[data-theme='dark'] .lech3a91-seg__item {
+  color: var(--zovo-text-secondary);
+}
+:root[data-theme='dark'] .lech3a91-btn--danger {
+  color: var(--zovo-error);
+}
+
+/* ---- Narrow viewports (chrome://extensions embedded view) ------------------------------- */
+@media (max-width: 900px) {
+  .lech3a91-opt-grid { grid-template-columns: minmax(0, 1fr); }
+  .lech3a91-opt-sidebar { position: static; }
+}
